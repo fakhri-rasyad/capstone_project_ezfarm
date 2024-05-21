@@ -2,6 +2,8 @@ package com.c241ps093.ezfarm
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.c241ps093.ezfarm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             this.bottomNavView.background = null
             this.bottomNavView.menu.getItem(2).isEnabled = false
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
+            val navController = navHostFragment.navController
+            binding.bottomNavView.setupWithNavController(navController)
         }
     }
 }
