@@ -27,14 +27,23 @@
         </RelativeLayout>
     </Toolbar>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="?actionBarSize"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_nav"
+        />
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:fabAlignmentMode="center"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="50dp"
         app:contentInsetStart="0dp"
         >
 
@@ -52,7 +61,7 @@
         android:contentDescription="@string/add_fab"
         android:src="@drawable/add_24"
         app:layout_anchor="@id/bottom_bar"
-        app:layout_anchorGravity="center"
+        android:layout_marginBottom="36dp"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
