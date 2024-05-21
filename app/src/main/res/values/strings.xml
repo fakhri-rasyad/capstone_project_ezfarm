@@ -10,4 +10,9 @@
     <string name="diagnose_button_text">Diagnose Your Plant</string>
     <string name="plant_list_title">Your plant</string>
     <string name="plant_list_action">See All</string>
+    <string name="list_thumbnail">list thumbnail</string>
+    <string name="plant_name">Plant name</string>
+    <string name="planted_date">Planted: %1$s</string>
+    <string name="harvest_date">Harvest: %1$s</string>
+    <string name="plant_growth_seeding">Seeding</string>
 </resources>
