@@ -18,4 +18,6 @@
     <string name="camera_button_background">camera button background</string>
     <string name="camera_button">camera button</string>
     <string name="back_button">back button</string>
+    <string name="loading_dots">Loading dots</string>
+    <string name="welcome_logo">welcome logo</string>
 </resources>
