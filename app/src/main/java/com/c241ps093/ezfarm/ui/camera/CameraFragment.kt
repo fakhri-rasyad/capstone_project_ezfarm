@@ -9,16 +9,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import com.c241ps093.ezfarm.Manifest
 import com.c241ps093.ezfarm.R
 
 
 class CameraFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//    }
 
     private fun allPermissionGranted() =
          ContextCompat.checkSelfPermission(requireActivity(), CAMERA_PERMISSION) == PackageManager.PERMISSION_GRANTED
@@ -49,6 +48,6 @@ class CameraFragment : Fragment() {
     }
 
     companion object {
-        private val CAMERA_PERMISSION = android.Manifest.permission.CAMERA
+        private const val CAMERA_PERMISSION = android.Manifest.permission.CAMERA
     }
 }

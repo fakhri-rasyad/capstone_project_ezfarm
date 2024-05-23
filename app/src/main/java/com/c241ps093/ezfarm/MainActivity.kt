@@ -15,10 +15,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.apply {
             this.bottomNavView.background = null
-            this.bottomNavView.menu.getItem(2).isEnabled = false
+            this.bottomNavView.menu.getItem(1).isEnabled = false
             val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
             val navController = navHostFragment.navController
-            binding.bottomNavView.setupWithNavController(navController)
+            this.bottomNavView.setupWithNavController(navController)
         }
     }
 }
