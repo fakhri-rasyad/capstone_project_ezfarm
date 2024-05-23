@@ -15,4 +15,7 @@
     <string name="planted_date">Planted: %1$s</string>
     <string name="harvest_date">Harvest: %1$s</string>
     <string name="plant_growth_seeding">Seeding</string>
+    <string name="camera_button_background">camera button background</string>
+    <string name="camera_button">camera button</string>
+    <string name="back_button">back button</string>
 </resources>

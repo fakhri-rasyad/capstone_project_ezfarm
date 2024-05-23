@@ -2,31 +2,33 @@ package com.c241ps093.ezfarm.ui.camera
 
 import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.c241ps093.ezfarm.R
+import com.c241ps093.ezfarm.databinding.ActivityCameraBinding
 import com.c241ps093.ezfarm.databinding.FragmentCameraBinding
 
-
-class CameraFragment : Fragment() {
+class CameraActivity : AppCompatActivity() {
 
     private var cameraSelector : CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-    private var _binding : FragmentCameraBinding? = null
+    private var _binding : ActivityCameraBinding? = null
     private val binding get() = _binding!!
 
     private fun allPermissionGranted() =
-         ContextCompat.checkSelfPermission(requireActivity(), CAMERA_PERMISSION) == PackageManager.PERMISSION_GRANTED
+        ContextCompat.checkSelfPermission(this,
+            CAMERA_PERMISSION
+        ) == PackageManager.PERMISSION_GRANTED
 
     private fun startCamera(){
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireActivity())
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
             val preview = Preview.Builder()
@@ -44,12 +46,12 @@ class CameraFragment : Fragment() {
                 )
             } catch (exc: Exception) {
                 Toast.makeText(
-                    requireContext(),
+                    this,
                     "Gagal memunculkan kamera.",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        }, ContextCompat.getMainExecutor(requireContext()))
+        }, ContextCompat.getMainExecutor(this))
     }
 
     private val requestPermissionLauncher =
@@ -57,26 +59,23 @@ class CameraFragment : Fragment() {
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                Toast.makeText(activity, "Permission request granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(activity, "Permission request denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
             }
         }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCameraBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+       _binding = ActivityCameraBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         if(!allPermissionGranted()){
             requestPermissionLauncher.launch(CAMERA_PERMISSION)
         }
         startCamera()
+
+        binding.backButton.setOnClickListener {
+            finish()
+        }
     }
 
     companion object {
