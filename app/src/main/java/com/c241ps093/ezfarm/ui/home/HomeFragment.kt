@@ -65,7 +65,6 @@ class HomeFragment : Fragment() {
     private fun setUpRecyclerView(
         plantList : List<DummyData>
     ){
-        Log.d("Home Fragment", plantList.size.toString())
         binding.apply {
             val adapter = HomeRecyclerViewAdapter(plantList)
             this.homeRv.adapter = adapter
