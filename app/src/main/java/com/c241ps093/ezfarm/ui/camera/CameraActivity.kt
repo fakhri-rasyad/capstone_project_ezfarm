@@ -1,5 +1,7 @@
 package com.c241ps093.ezfarm.ui.camera
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
@@ -75,6 +77,17 @@ class CameraActivity : AppCompatActivity() {
 
         binding.backButton.setOnClickListener {
             finish()
+        }
+
+        binding.cameraButton.setOnClickListener {
+            val scaleX = ObjectAnimator.ofFloat(it, "scaleX", 1f, 1.5f, 1f)
+            val scaleY = ObjectAnimator.ofFloat(it, "scaleY", 1f, 1.5f, 1f)
+
+            AnimatorSet().apply {
+                playTogether(scaleX, scaleY)
+                duration = 300
+                start()
+            }
         }
     }
 
