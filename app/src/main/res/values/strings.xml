@@ -20,4 +20,8 @@
     <string name="back_button">back button</string>
     <string name="loading_dots">Loading dots</string>
     <string name="welcome_logo">welcome logo</string>
+    <string name="welcome_title_text">Your Plant Disease Detector App</string>
+    <string name="welcome_subtitle_text">Identify diseases fast and ensure healthy growth for your plants.</string>
+    <string name="welcome_button">Get Started</string>
+    <string name="preview_image">preview image</string>
 </resources>
