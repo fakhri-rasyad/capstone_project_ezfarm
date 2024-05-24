@@ -1,64 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layoutDescription="@xml/activity_welcome_scene2"
     tools:context=".ui.splash.WelcomeActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/first_dot"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/loading_dots"
+        android:src="@drawable/loading_dots"
         app:layout_constraintBottom_toBottomOf="parent"
-        >
-        <ImageView
-            android:id="@+id/first_dot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:src="@drawable/loading_dots"
-            android:contentDescription="@string/loading_dots"
-            />
-        <ImageView
-            android:id="@+id/second_dot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleX=".75"
-            android:scaleY=".75"
-            android:alpha=".5"
-            android:layout_marginHorizontal="24dp"
-            android:src="@drawable/loading_dots"
-            android:contentDescription="@string/loading_dots"
-        />
-        <ImageView
-            android:id="@+id/third_dot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleX=".75"
-            android:scaleY=".75"
-            android:alpha=".5"
-            android:layout_marginHorizontal="24dp"
-            android:src="@drawable/loading_dots"
-            android:contentDescription="@string/loading_dots"
-            />
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/welcome_logo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/second_dot"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha=".5"
+        android:contentDescription="@string/loading_dots"
+        android:scaleX=".75"
+        android:scaleY=".75"
+        android:src="@drawable/loading_dots"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/third_dot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/third_dot"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha=".5"
+        android:contentDescription="@string/loading_dots"
+        android:scaleX=".75"
+        android:scaleY=".75"
+        android:src="@drawable/loading_dots"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/welcome_logo"
+        android:alpha="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/welcome_logo"
         android:contentDescription="@string/welcome_logo"
-        android:alpha="0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/welcome_logo"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
