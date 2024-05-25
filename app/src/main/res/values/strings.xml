@@ -32,4 +32,7 @@
     <string name="onboarding_subtitle_one">Quickly and accurately detects plant diseases.</string>
     <string name="onboarding_subtitle_two">Provides immediate solutions and advice.</string>
     <string name="onboarding_subtitle_three">Continuously monitors plant health in real-time.</string>
+    <string name="text_hint">Planted date</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_plant">Add Plant</string>
 </resources>
