@@ -18,10 +18,18 @@
     <string name="camera_button_background">camera button background</string>
     <string name="camera_button">camera button</string>
     <string name="back_button">back button</string>
+    <string name="forward_button">forward button</string>
     <string name="loading_dots">Loading dots</string>
     <string name="welcome_logo">welcome logo</string>
     <string name="welcome_title_text">Your Plant Disease Detector App</string>
     <string name="welcome_subtitle_text">Identify diseases fast and ensure healthy growth for your plants.</string>
     <string name="welcome_button">Get Started</string>
     <string name="preview_image">preview image</string>
+    <string name="onboarding_image_one">onboarding image one</string>
+    <string name="onboarding_title_one">Fast and Accurate Detection</string>
+    <string name="onboarding_title_two">Instant Treatment Recommendations</string>
+    <string name="onboarding_title_three">Real-Time Plant Monitoring</string>
+    <string name="onboarding_subtitle_one">Quickly and accurately detects plant diseases.</string>
+    <string name="onboarding_subtitle_two">Provides immediate solutions and advice.</string>
+    <string name="onboarding_subtitle_three">Continuously monitors plant health in real-time.</string>
 </resources>
