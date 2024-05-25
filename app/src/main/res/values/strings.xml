@@ -35,4 +35,11 @@
     <string name="text_hint">Planted date</string>
     <string name="cancel">Cancel</string>
     <string name="add_plant">Add Plant</string>
+
+    <string-array name="Plants">
+        <item>Rice</item>
+        <item>Wheat</item>
+        <item>Potato</item>
+        <item>Carrot</item>
+    </string-array>
 </resources>

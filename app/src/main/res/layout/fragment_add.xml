@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="24dp"
     android:background="#4D7F7F7F"
-    tools:context=".ui.add.AddFragment">
+    android:clickable="true"
+    tools:context=".ui.add.AddFragment"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dialog"
@@ -30,7 +32,6 @@
             android:id="@+id/spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:layout_marginStart="32dp"
             android:background="@drawable/dialog_spinner_arrow"
             app:layout_constraintStart_toEndOf="@id/dialog_thumb"
@@ -45,6 +46,7 @@
             android:padding="8dp"
             android:layout_marginStart="32dp"
             android:text="@string/text_hint"
+            android:textSize="16sp"
             android:background="@drawable/camera_button_bar_background"
             app:layout_constraintStart_toEndOf="@id/dialog_thumb"
             app:layout_constraintEnd_toEndOf="parent"
