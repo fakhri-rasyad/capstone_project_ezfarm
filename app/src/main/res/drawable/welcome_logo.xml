@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item>
+        <shape>
+            <size android:width="240dp" android:height="240dp"/>
+            <corners android:radius="70dp"/>
+            <solid android:color="@color/wheat"/>
+            <padding android:right="8dp"/>
+        </shape>
+    </item>
+    <item
+        android:gravity="center"
+        >
+        <vector
+            android:width="160dp"
+            android:height="160dp"
+            android:viewportWidth="140"
+            android:viewportHeight="140">
+            <path
+                android:pathData="M0.17,128.83V114.67C0.17,114.67 35.58,100.5 71,100.5C106.42,100.5 141.83,114.67 141.83,114.67V128.83H0.17ZM66.04,37.46C57.54,9.83 14.33,16.21 14.33,16.21C14.33,16.21 15.75,71.46 56.12,62.96C53.29,42.42 42.67,36.75 42.67,36.75C62.5,36.75 63.92,60.83 63.92,60.83V93.42C66.04,93.42 68.87,93.42 71,93.42C73.12,93.42 75.96,93.42 78.08,93.42V63.67C78.08,63.67 78.08,36.04 99.33,28.96C99.33,28.96 85.17,50.21 85.17,64.38C134.75,69.33 134.75,1.33 134.75,1.33C134.75,1.33 71.71,-5.75 66.04,37.46Z"
+                android:fillColor="#106A52"/>
+        </vector>
+    </item>
+</layer-list>

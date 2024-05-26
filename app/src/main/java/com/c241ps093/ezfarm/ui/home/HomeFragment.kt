@@ -1,17 +1,14 @@
 package com.c241ps093.ezfarm.ui.home
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.Orientation
-import androidx.recyclerview.widget.RecyclerView.VERTICAL
-import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.databinding.FragmentHomeBinding
+import com.c241ps093.ezfarm.ui.camera.CameraActivity
 
 class HomeFragment : Fragment() {
 
@@ -39,6 +36,10 @@ class HomeFragment : Fragment() {
             homeRv.apply {
                 layoutManager = linearLayoutManager
             }
+            scanButton.setOnClickListener {
+                val intent = Intent(requireActivity(), CameraActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         val arrayList = arrayListOf<DummyData>()
@@ -65,7 +66,6 @@ class HomeFragment : Fragment() {
     private fun setUpRecyclerView(
         plantList : List<DummyData>
     ){
-        Log.d("Home Fragment", plantList.size.toString())
         binding.apply {
             val adapter = HomeRecyclerViewAdapter(plantList)
             this.homeRv.adapter = adapter
