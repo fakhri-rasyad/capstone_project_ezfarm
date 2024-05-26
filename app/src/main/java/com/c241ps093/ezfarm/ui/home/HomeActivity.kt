@@ -2,43 +2,42 @@ package com.c241ps093.ezfarm.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.c241ps093.ezfarm.databinding.FragmentHomeBinding
+import com.c241ps093.ezfarm.R
+import com.c241ps093.ezfarm.databinding.ActivityMainBinding
+import com.c241ps093.ezfarm.ui.add.AddFragment
 import com.c241ps093.ezfarm.ui.camera.CameraActivity
 
-class HomeFragment : Fragment() {
+class HomeActivity : AppCompatActivity() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-
+    private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.apply {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val linearLayoutManager = LinearLayoutManager(activity)
+        val linearLayoutManager = LinearLayoutManager(this)
 
         binding.apply {
             homeRv.apply {
                 layoutManager = linearLayoutManager
             }
             scanButton.setOnClickListener {
-                val intent = Intent(requireActivity(), CameraActivity::class.java)
+                val intent = Intent(this@HomeActivity, CameraActivity::class.java)
                 startActivity(intent)
+            }
+            addFab.setOnClickListener {
+                val fragmentManager = supportFragmentManager
+                fragmentManager
+                    .beginTransaction()
+                    .add(R.id.main, AddFragment())
+                    .addToBackStack(null)
+                    .commit()
+
             }
         }
 
@@ -55,14 +54,7 @@ class HomeFragment : Fragment() {
         }
 
         setUpRecyclerView(arrayList)
-
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun setUpRecyclerView(
         plantList : List<DummyData>
     ){
@@ -71,5 +63,4 @@ class HomeFragment : Fragment() {
             this.homeRv.adapter = adapter
         }
     }
-
 }

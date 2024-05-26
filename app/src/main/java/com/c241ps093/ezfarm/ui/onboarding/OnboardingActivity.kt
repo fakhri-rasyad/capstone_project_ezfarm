@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
-import com.c241ps093.ezfarm.MainActivity
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.databinding.ActivityOnboardingBinding
+import com.c241ps093.ezfarm.ui.home.HomeActivity
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -40,7 +40,7 @@ class OnboardingActivity : AppCompatActivity() {
                 if(currentId == R.id.third_onboarding){
                     binding.forwardArrow.setOnTouchListener { _, event ->
                         if(event.action == MotionEvent.ACTION_DOWN){
-                            val intent = Intent(this@OnboardingActivity, MainActivity::class.java)
+                            val intent = Intent(this@OnboardingActivity, HomeActivity::class.java)
                             startActivity(intent)
                             finish()
                         }

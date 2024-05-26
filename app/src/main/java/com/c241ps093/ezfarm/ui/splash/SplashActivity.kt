@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.c241ps093.ezfarm.MainActivity
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.databinding.ActivitySplashBinding
+import com.c241ps093.ezfarm.ui.home.HomeActivity
 import com.c241ps093.ezfarm.ui.welcome.WelcomeActivity
 import com.c241ps093.ezfarm.viewmodel.SplashViewModel
 import com.c241ps093.ezfarm.viewmodel.factory.ViewModelFactory
@@ -47,7 +47,7 @@ class SplashActivity : AppCompatActivity() {
                 if(currentId == R.id.show_logo){
 
                     if(viewModel.checkHasUsedApp()) {
-                        val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                        val intent = Intent(this@SplashActivity, HomeActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
