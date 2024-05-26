@@ -1,7 +1,6 @@
 package com.c241ps093.ezfarm.ui.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.c241ps093.ezfarm.R

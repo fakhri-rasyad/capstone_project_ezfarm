@@ -4,11 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="24dp"
-    android:background="#4D7F7F7F"
+    android:background="#007F7F7F"
     android:clickable="true"
     tools:context=".ui.add.AddFragment"
-    >
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dialog"

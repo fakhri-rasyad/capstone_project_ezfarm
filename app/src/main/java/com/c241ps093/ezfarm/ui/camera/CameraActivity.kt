@@ -5,18 +5,13 @@ import android.animation.ObjectAnimator
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.databinding.ActivityCameraBinding
-import com.c241ps093.ezfarm.databinding.FragmentCameraBinding
 
 class CameraActivity : AppCompatActivity() {
 
