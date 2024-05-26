@@ -15,11 +15,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.apply {
-            this.bottomNavView.background = null
-            this.bottomNavView.menu.getItem(1).isEnabled = false
+            bottomNavView.background = null
+            bottomNavView.menu.getItem(1).isEnabled = false
             val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
             val navController = navHostFragment.navController
-            this.bottomNavView.setupWithNavController(navController)
+            bottomNavView.setupWithNavController(navController)
             addFab.setOnClickListener {
                 val fragmentManager = supportFragmentManager
                 fragmentManager

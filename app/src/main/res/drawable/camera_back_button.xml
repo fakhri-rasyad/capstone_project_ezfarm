@@ -10,6 +10,7 @@
                 android:left="8dp"
                 android:right="8dp"
                 />
+            <stroke android:color="@color/dartmouth_green" android:width="3dp"/>
         </shape>
     </item>
     <item>
