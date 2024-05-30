@@ -39,6 +39,8 @@
     <string name="plant_status">Plant Status</string>
     <string name="date_empty_error">Date Can\'t Be Empty</string>
     <string name="plant_type_empty_error">Plan Type Must Be Selected</string>
+    <string name="camera_success">Berhasil mengambil gambar.</string>
+    <string name="camera_failure">Gagal mengambil gambar.</string>
 
     <string-array name="Plants">
         <item>Rice</item>

@@ -1,6 +1,5 @@
 package com.c241ps093.ezfarm.ui.home
 
-import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

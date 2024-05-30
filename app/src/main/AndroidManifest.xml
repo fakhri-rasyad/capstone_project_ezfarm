@@ -33,11 +33,10 @@
         </activity>
         <activity
             android:name=".ui.camera.CameraActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.home.HomeActivity"
-            android:exported="true"
-            />
+            android:exported="true" />
     </application>
 
 </manifest>
