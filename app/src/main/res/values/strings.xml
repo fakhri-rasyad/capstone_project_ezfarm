@@ -37,6 +37,8 @@
     <string name="add_plant">Add Plant</string>
     <string name="day">Day %1$s</string>
     <string name="plant_status">Plant Status</string>
+    <string name="date_empty_error">Date Can\'t Be Empty</string>
+    <string name="plant_type_empty_error">Plan Type Must Be Selected</string>
 
     <string-array name="Plants">
         <item>Rice</item>

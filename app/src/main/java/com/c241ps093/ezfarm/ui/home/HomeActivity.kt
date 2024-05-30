@@ -1,26 +1,28 @@
 package com.c241ps093.ezfarm.ui.home
 
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.databinding.ActivityMainBinding
 import com.c241ps093.ezfarm.ui.add.AddFragment
 import com.c241ps093.ezfarm.ui.camera.CameraActivity
+import com.c241ps093.ezfarm.viewmodel.factory.ViewModelFactory
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
+    private lateinit var viewModel: HomeViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.apply {
-
-        }
-
         val linearLayoutManager = LinearLayoutManager(this)
+
+        viewModel = getViewModel(this)
 
         binding.apply {
             homeRv.apply {
@@ -37,23 +39,12 @@ class HomeActivity : AppCompatActivity() {
                     .add(R.id.main, AddFragment())
                     .addToBackStack(null)
                     .commit()
-
             }
         }
 
-        val arrayList = arrayListOf<DummyData>()
-        for(i in 1..10){
-            arrayList.add(
-                DummyData(
-                    "Padi",
-                    "20 Mei 2024",
-                    "20 Aprils 2020",
-                    "Seeding"
-                )
-            )
+        viewModel.plantList.observe(this){
+            setUpRecyclerView(it)
         }
-
-        setUpRecyclerView(arrayList)
     }
     private fun setUpRecyclerView(
         plantList : List<DummyData>
@@ -63,4 +54,16 @@ class HomeActivity : AppCompatActivity() {
             this.homeRv.adapter = adapter
         }
     }
+
+    internal var addPlant : AddFragment.AddPlant = object : AddFragment.AddPlant {
+        override fun addPlant(newPlant: DummyData) {
+            viewModel.addData(newPlant)
+        }
+    }
+
+    private fun getViewModel(appCompatActivity: AppCompatActivity) : HomeViewModel {
+        val viewModelFactory = ViewModelFactory.getInstance(application = appCompatActivity.application)
+        return ViewModelProvider(appCompatActivity, viewModelFactory)[HomeViewModel::class.java]
+    }
+
 }

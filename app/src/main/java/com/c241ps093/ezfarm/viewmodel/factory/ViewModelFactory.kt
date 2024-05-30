@@ -3,6 +3,7 @@ package com.c241ps093.ezfarm.viewmodel.factory
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.c241ps093.ezfarm.ui.home.HomeViewModel
 import com.c241ps093.ezfarm.viewmodel.Injection
 import com.c241ps093.ezfarm.viewmodel.SplashViewModel
 
@@ -26,6 +27,10 @@ class ViewModelFactory private constructor(private val mApplication: Application
 
         if(modelClass.isAssignableFrom(SplashViewModel::class.java)){
             return SplashViewModel(
+                ezFarmRepository = Injection.injectRepository(context = mApplication.applicationContext)
+            ) as T
+        } else if(modelClass.isAssignableFrom(HomeViewModel::class.java)){
+            return HomeViewModel(
                 ezFarmRepository = Injection.injectRepository(context = mApplication.applicationContext)
             ) as T
         }
