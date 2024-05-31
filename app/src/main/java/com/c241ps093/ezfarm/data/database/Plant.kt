@@ -15,10 +15,10 @@ data class Plant (
     var id: Int = 0,
 
     @ColumnInfo(name = "plantedDate")
-    var plantedDate: Date,
+    var plantedDate: String,
 
     @ColumnInfo(name = "harvestDate")
-    var harvestDate: Date,
+    var harvestDate: String,
 
     @ColumnInfo(name = "growthStatus")
     var growthStatus: String,

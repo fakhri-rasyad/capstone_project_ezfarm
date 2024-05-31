@@ -10,7 +10,6 @@ import java.util.Calendar
 class HomeViewModel(private val ezFarmRepository: EzFarmRepository) : ViewModel() {
     private var _plantList = MutableLiveData<List<DummyData>>()
     val plantList : LiveData<List<DummyData>> = _plantList
-
     fun getPlant() : LiveData<List<Plant>> = ezFarmRepository.getPlant()
 
 

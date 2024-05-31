@@ -3,26 +3,20 @@ package com.c241ps093.ezfarm.ui.add
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.FragmentAddBinding
 import com.c241ps093.ezfarm.dateFormatter
 import com.c241ps093.ezfarm.makeToast
-import com.c241ps093.ezfarm.ui.home.DummyData
 import com.c241ps093.ezfarm.ui.home.HomeActivity
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 class AddFragment : DialogFragment() {
 
@@ -35,9 +29,9 @@ class AddFragment : DialogFragment() {
 
     private var plantType: String? = null
 
-    private var plantPlantedDate: Date? = null
+    private var plantPlantedDate: String? = null
 
-    private var plantHarvestDate: Date? = null
+    private var plantHarvestDate: String? = null
 
 
     override fun onCreateView(
@@ -91,8 +85,8 @@ class AddFragment : DialogFragment() {
                     return@setOnClickListener
                 }
                 val newDummyData = Plant(
-                    plantedDate = plantPlantedDate as Date,
-                    harvestDate =  plantHarvestDate as Date,
+                    plantedDate = plantPlantedDate.toString(),
+                    harvestDate =  plantHarvestDate.toString(),
                     growthStatus =  "Seeding",
                     plantType =  plantType.toString())
                 addPlant?.addPlant(newDummyData)
@@ -120,10 +114,10 @@ class AddFragment : DialogFragment() {
             requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, monthOfYear, dayOfMonth)
-                plantPlantedDate = selectedDate.time
-                binding.calendarPick.text = dateFormatter(selectedDate.time)
+                plantPlantedDate = dateFormatter(selectedDate.time)
+                binding.calendarPick.text = plantPlantedDate
                 selectedDate.add(Calendar.DAY_OF_MONTH, 90)
-                plantHarvestDate = selectedDate.time
+                plantHarvestDate = dateFormatter(selectedDate.time)
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),

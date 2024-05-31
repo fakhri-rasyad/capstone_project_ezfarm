@@ -27,8 +27,8 @@ class HomeRecyclerViewAdapter(private val plantList: List<Plant>): RecyclerView.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val plantData = plantList[position]
-        val plantDate = dateFormatter(plantData.plantedDate)
-        val harvestedDate = dateFormatter(plantData.harvestDate)
+        val plantDate = plantData.plantedDate
+        val harvestedDate = plantData.harvestDate
         holder.apply {
             plantName.text = plantData.plantType
             plantedDate.text = holder.itemView.context.getString(R.string.planted_date, plantDate)

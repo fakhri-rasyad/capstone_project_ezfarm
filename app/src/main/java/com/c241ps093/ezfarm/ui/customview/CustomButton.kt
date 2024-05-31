@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.c241ps093.ezfarm.R
 
-class customButton : AppCompatButton {
+class CustomButton : AppCompatButton {
     private lateinit var enabledBackground: Drawable
     private lateinit var disabledBackground: Drawable
     private lateinit var iconDrawable: Drawable
