@@ -4,11 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="24dp"
-    android:background="#4D7F7F7F"
+    android:background="#007F7F7F"
     android:clickable="true"
     tools:context=".ui.add.AddFragment"
-    >
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dialog"
@@ -45,7 +44,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:layout_marginStart="32dp"
-            android:text="@string/text_hint"
+            android:hint="@string/text_hint"
             android:textSize="16sp"
             android:background="@drawable/camera_button_bar_background"
             app:layout_constraintStart_toEndOf="@id/dialog_thumb"

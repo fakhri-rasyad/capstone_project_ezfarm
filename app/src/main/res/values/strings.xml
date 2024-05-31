@@ -42,6 +42,11 @@
     <string name="day">Day %1$s,</string>
     <string name="penanganan_title">penanganan_title</string>
     <string name="cth_penanganan">basahkan tanah dengan air lakukan pembajakan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman</string>
+    <string name="plant_status">Plant Status</string>
+    <string name="date_empty_error">Date Can\'t Be Empty</string>
+    <string name="plant_type_empty_error">Plan Type Must Be Selected</string>
+    <string name="camera_success">Berhasil mengambil gambar.</string>
+    <string name="camera_failure">Gagal mengambil gambar.</string>
 
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="penanganan_content">

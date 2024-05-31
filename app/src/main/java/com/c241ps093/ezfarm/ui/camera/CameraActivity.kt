@@ -4,23 +4,26 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
+import android.view.OrientationEventListener
+import android.view.Surface
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.c241ps093.ezfarm.R
+import com.c241ps093.ezfarm.createCustomTempFile
 import com.c241ps093.ezfarm.databinding.ActivityCameraBinding
-import com.c241ps093.ezfarm.databinding.FragmentCameraBinding
 
 class CameraActivity : AppCompatActivity() {
 
     private var cameraSelector : CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var imageCapture: ImageCapture? = null
     private var _binding : ActivityCameraBinding? = null
     private val binding get() = _binding!!
 
@@ -39,12 +42,15 @@ class CameraActivity : AppCompatActivity() {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
 
+            imageCapture = ImageCapture.Builder().build()
+
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
                     this,
                     cameraSelector,
-                    preview
+                    preview,
+                    imageCapture
                 )
             } catch (exc: Exception) {
                 Toast.makeText(
@@ -54,6 +60,51 @@ class CameraActivity : AppCompatActivity() {
                 ).show()
             }
         }, ContextCompat.getMainExecutor(this))
+    }
+
+    private fun takePhoto() {
+        val imageCapture = imageCapture ?: return
+        val photoFile = createCustomTempFile(application)
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(this),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+//                    Navigasi ke halaman hasil
+//                    val intent = Intent(this@CameraActivity, ResultActivity::class.java)
+//                    intent.putExtra(ResultActivity.IMAGE_URI, output.savedUri.toString())
+//                    intent.putExtra(ResultActivity.RESULT_CODE, CAMERAX_RESULT)
+//                    startActivity(intent)
+                }
+
+                override fun onError(exc: ImageCaptureException) {
+                    Toast.makeText(
+                        this@CameraActivity,
+                        getString(R.string.camera_failure),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Log.e(TAG, "onError: ${exc.message}")
+                }
+            }
+        )
+    }
+
+    private val orientationEventListener by lazy {
+        object : OrientationEventListener(this) {
+            override fun onOrientationChanged(orientation: Int) {
+                if (orientation == ORIENTATION_UNKNOWN) {
+                    return
+                }
+                val rotation = when (orientation) {
+                    in 45 until 135 -> Surface.ROTATION_270
+                    in 135 until 225 -> Surface.ROTATION_180
+                    in 225 until 315 -> Surface.ROTATION_90
+                    else -> Surface.ROTATION_0
+                }
+                imageCapture?.targetRotation = rotation
+            }
+        }
     }
 
     private val requestPermissionLauncher =
@@ -88,10 +139,24 @@ class CameraActivity : AppCompatActivity() {
                 duration = 300
                 start()
             }
+
+            takePhoto()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        orientationEventListener.enable()
+    }
+    override fun onStop() {
+        super.onStop()
+        orientationEventListener.disable()
     }
 
     companion object {
         private const val CAMERA_PERMISSION = android.Manifest.permission.CAMERA
+        private const val TAG = "Camera Activity"
+        const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
+        const val CAMERAX_RESULT = 200
     }
 }
