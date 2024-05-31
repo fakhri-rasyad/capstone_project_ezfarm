@@ -3,5 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dartmouth_green">#FF106A52</color>
+    <color name="dartmouth_green_100">#3BA387</color>
     <color name="wheat">#FFF5DEB3</color>
 </resources>

@@ -35,7 +35,18 @@
     <string name="text_hint">Planted date</string>
     <string name="cancel">Cancel</string>
     <string name="add_plant">Add Plant</string>
+    <string name="add_plant_to_collection">Add to Your Plant Collection</string>
+    <string name="deskripsi_logo">logo deskripsi</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="Penanganan">Penanganan</string>
+    <string name="day">Day %1$s,</string>
+    <string name="penanganan_title">penanganan_title</string>
+    <string name="cth_penanganan">basahkan tanah dengan air lakukan pembajakan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman</string>
 
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="penanganan_content">
+        a. Pratanam\n• Sanitasi tanaman inang\n• Pemilihan varietas tahan sesuai sebaran ras\n\nb. Pesemaian\n• Penggunaan benih sehat\n• Sanitasi inang pada saluran irigasi\n• Hindari penggenangan terlalu dalam\n\nc. Tanaman Muda (Tanam - Anakan maksimum)\n• Pemupukan berimbang sesuai anjuran setempat\n• Sanitasi rerumputan sumber patogen\n• Pengeringan lahan secara berkala, yaitu 1 hari diairi dan 3-4 hari dikeringkan, terutama pada daerah endemik serangan penyakit\n\nd. Pengendalian HDB dengan Bakteri Antagonis CorynebacteriumSp. (BPOPT Jatisari, Karawang)\n• Aplikasi efektif 3 kali, yaitu saat:\n• Perlakuan benih\n• 28 hst\n• 42 hst
+    </string>
     <string-array name="Plants">
         <item>Rice</item>
         <item>Wheat</item>

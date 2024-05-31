@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:circularflow_defaultRadius="@dimen/cardview_default_radius"
+    tools:context=".ui.result.ResultActivity"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shapeableImageView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="32dp"
+                android:background="@drawable/home_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/add_btn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/bg_button_primary"
+                android:drawableStart="@drawable/add_ic"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:text="@string/add_plant_to_collection"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shapeableImageView" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="32dp"
+                android:layout_marginBottom="32dp"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_btn">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginVertical="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="8dp">
+
+                        <ImageView
+                            android:id="@+id/picture"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="@string/deskripsi_logo"
+                            android:scaleType="centerCrop"
+                            tools:src="@drawable/deskripsi_logo" />
+
+                        <TextView
+                            android:id="@+id/deskripsi_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:textColor="@color/dartmouth_green"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:text="@string/deskripsi" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/deskripsi_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginVertical="8dp"
+                        android:paddingBottom="16dp"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        tools:text="@string/lorem"
+                        app:layout_constraintTop_toBottomOf="@id/linear"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/penanganan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="32dp"
+                android:layout_marginBottom="32dp"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deskripsi">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/linear_penanganan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginVertical="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="8dp">
+
+                        <ImageView
+                            android:id="@+id/picture_penanganan"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="@string/deskripsi_logo"
+                            android:scaleType="centerCrop"
+                            tools:src="@drawable/deskripsi_logo" />
+
+                        <TextView
+                            android:id="@+id/penanganan_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:textColor="@color/dartmouth_green"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:text="@string/Penanganan" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/penanganan_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:layout_marginVertical="8dp"
+                        android:paddingBottom="16dp"
+                        tools:text="@string/penanganan_content"
+                        app:layout_constraintTop_toBottomOf="@id/linear_penanganan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</LinearLayout>
