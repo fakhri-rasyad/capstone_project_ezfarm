@@ -2,6 +2,7 @@ package com.c241ps093.ezfarm.ui.camera
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import androidx.core.content.ContextCompat
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.createCustomTempFile
 import com.c241ps093.ezfarm.databinding.ActivityCameraBinding
+import com.c241ps093.ezfarm.ui.result.ResultActivity
 
 class CameraActivity : AppCompatActivity() {
 
@@ -71,11 +73,10 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-//                    Navigasi ke halaman hasil
-//                    val intent = Intent(this@CameraActivity, ResultActivity::class.java)
+                    val intent = Intent(this@CameraActivity, ResultActivity::class.java)
 //                    intent.putExtra(ResultActivity.IMAGE_URI, output.savedUri.toString())
 //                    intent.putExtra(ResultActivity.RESULT_CODE, CAMERAX_RESULT)
-//                    startActivity(intent)
+                    startActivity(intent)
                 }
 
                 override fun onError(exc: ImageCaptureException) {
