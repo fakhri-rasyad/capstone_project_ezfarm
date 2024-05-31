@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.c241ps093.ezfarm.R
+import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.FragmentAddBinding
 import com.c241ps093.ezfarm.dateFormatter
 import com.c241ps093.ezfarm.makeToast
@@ -89,7 +90,11 @@ class AddFragment : DialogFragment() {
                     makeToast(requireContext(), getString(R.string.plant_type_empty_error))
                     return@setOnClickListener
                 }
-                val newDummyData = DummyData(plantType.toString(), plantPlantedDate as Date, plantHarvestDate as Date, "Seeding")
+                val newDummyData = Plant(
+                    plantedDate = plantPlantedDate as Date,
+                    harvestDate =  plantHarvestDate as Date,
+                    growthStatus =  "Seeding",
+                    plantType =  plantType.toString())
                 addPlant?.addPlant(newDummyData)
                 dismiss()
             }
@@ -128,7 +133,7 @@ class AddFragment : DialogFragment() {
     }
 
     interface AddPlant {
-        fun addPlant(newPlant : DummyData)
+        fun addPlant(newPlant : Plant)
     }
 }
 

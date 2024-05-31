@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps093.ezfarm.R
+import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.ActivityMainBinding
 import com.c241ps093.ezfarm.ui.add.AddFragment
 import com.c241ps093.ezfarm.ui.camera.CameraActivity
@@ -41,12 +42,12 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.plantList.observe(this){
+        viewModel.getPlant().observe(this){
             setUpRecyclerView(it)
         }
     }
     private fun setUpRecyclerView(
-        plantList : List<DummyData>
+        plantList : List<Plant>
     ){
         binding.apply {
             val adapter = HomeRecyclerViewAdapter(plantList)
@@ -55,9 +56,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     internal var addPlant : AddFragment.AddPlant = object : AddFragment.AddPlant {
-        override fun addPlant(newPlant: DummyData) {
+        override fun addPlant(newPlant: Plant) {
             viewModel.addData(newPlant)
         }
+
     }
 
     private fun getViewModel(appCompatActivity: AppCompatActivity) : HomeViewModel {
