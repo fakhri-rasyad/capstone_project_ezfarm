@@ -2,6 +2,7 @@ package com.c241ps093.ezfarm.ui.add
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +10,18 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.FragmentAddBinding
+import com.c241ps093.ezfarm.dateFormat
 import com.c241ps093.ezfarm.dateFormatter
 import com.c241ps093.ezfarm.makeToast
 import com.c241ps093.ezfarm.ui.home.HomeActivity
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
 class AddFragment : DialogFragment() {
@@ -43,6 +49,7 @@ class AddFragment : DialogFragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -109,19 +116,19 @@ class AddFragment : DialogFragment() {
         this.addPlant = null
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun showDatePicker() {
         val datePickerDialog = DatePickerDialog(
             requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                val selectedDate = Calendar.getInstance()
-                selectedDate.set(year, monthOfYear, dayOfMonth)
-                plantPlantedDate = dateFormatter(selectedDate.time)
+                val selectedDate = LocalDate.of(year, monthOfYear, dayOfMonth)
+                val formatter = DateTimeFormatter.ofPattern(dateFormat)
+                plantPlantedDate = selectedDate.format(formatter)
                 binding.calendarPick.text = plantPlantedDate
-                selectedDate.add(Calendar.DAY_OF_MONTH, 90)
-                plantHarvestDate = dateFormatter(selectedDate.time)
+                plantHarvestDate = selectedDate.plusDays(90).format(formatter)
             },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
+            LocalDateTime.now().year,
+            LocalDateTime.now().monthValue,
+            LocalDateTime.now().dayOfMonth,
         )
         datePickerDialog.show()
     }

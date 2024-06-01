@@ -1,5 +1,6 @@
 package com.c241ps093.ezfarm.ui.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,6 +8,7 @@ import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.HomeRecyclerItemBinding
 import com.c241ps093.ezfarm.dateFormatter
+import com.c241ps093.ezfarm.ui.detail.DetailActivity
 
 class HomeRecyclerViewAdapter(private val plantList: List<Plant>): RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(binding: HomeRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -34,6 +36,14 @@ class HomeRecyclerViewAdapter(private val plantList: List<Plant>): RecyclerView.
             plantedDate.text = holder.itemView.context.getString(R.string.planted_date, plantDate)
             harvestDate.text = holder.itemView.context.getString(R.string.harvest_date, harvestedDate)
             growthStatus.text = plantData.growthStatus
+        }
+
+        holder.itemView.setOnClickListener {
+            holder.itemView.context.apply {
+                val intent = Intent(this, DetailActivity::class.java)
+                this.startActivity(intent)
+            }
+
         }
     }
 }
