@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.ActivityDetailBinding
@@ -32,6 +33,8 @@ class DetailActivity : AppCompatActivity() {
         binding.apply {
             dayTitle.text = getString(R.string.day, getDayDifference(plantData))
         }
+
+        setUpRecyclerView()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -41,6 +44,19 @@ class DetailActivity : AppCompatActivity() {
         val plantedDate = LocalDate.parse(plantData?.plantedDate, formatter)
         val dayDifference = ChronoUnit.DAYS.between(plantedDate, today) + 1
         return dayDifference.toString()
+    }
+
+    private fun setUpRecyclerView(){
+        val intArray = arrayListOf<Int>()
+        for(i in 1..10){
+            intArray.add(i)
+        }
+        val linearLayoutManager = LinearLayoutManager(this)
+        binding.rvStorylist.apply {
+            layoutManager = linearLayoutManager
+            adapter = DetailRecyclerAdapter(intArray)
+        }
+
     }
 
     companion object {
