@@ -39,7 +39,7 @@
     <string name="deskripsi_logo">logo deskripsi</string>
     <string name="deskripsi">Deskripsi</string>
     <string name="Penanganan">Penanganan</string>
-    <string name="day">Day %1$s,</string>
+    <string name="day">Day %1$s</string>
     <string name="penanganan_title">penanganan_title</string>
     <string name="cth_penanganan">basahkan tanah dengan air lakukan pembajakan untuk mempersiapkan tanah dalam keadaan lunak dan gembur serta cocok untuk penanaman</string>
     <string name="plant_status">Plant Status</string>

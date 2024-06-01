@@ -41,9 +41,9 @@ class HomeRecyclerViewAdapter(private val plantList: List<Plant>): RecyclerView.
         holder.itemView.setOnClickListener {
             holder.itemView.context.apply {
                 val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.PLANT_DATA, plantData)
                 this.startActivity(intent)
             }
-
         }
     }
 }
