@@ -35,6 +35,7 @@
                 android:layout_height="24dp"
                 android:contentDescription="@string/deskripsi_logo"
                 android:scaleType="centerCrop"
+                android:src="@drawable/spray"
                 tools:src="@drawable/spray" />
 
             <TextView
