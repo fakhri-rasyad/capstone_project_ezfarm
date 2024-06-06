@@ -19,17 +19,16 @@ import com.c241ps093.ezfarm.dateFormat
 import com.c241ps093.ezfarm.dateFormatter
 import com.c241ps093.ezfarm.makeToast
 import com.c241ps093.ezfarm.ui.home.HomeActivity
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
-class AddFragment : DialogFragment() {
+class AddFragment : BottomSheetDialogFragment() {
 
     private var _binding : FragmentAddBinding? = null
     private val binding get() = _binding!!
-
-    private val calendar = Calendar.getInstance()
 
     private var addPlant: AddPlant? = null
 

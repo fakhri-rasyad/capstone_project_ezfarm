@@ -11,6 +11,7 @@ import com.c241ps093.ezfarm.databinding.ActivityMainBinding
 import com.c241ps093.ezfarm.ui.add.AddFragment
 import com.c241ps093.ezfarm.ui.camera.CameraActivity
 import com.c241ps093.ezfarm.viewmodel.factory.ViewModelFactory
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -33,12 +34,14 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             addFab.setOnClickListener {
-                val fragmentManager = supportFragmentManager
-                fragmentManager
-                    .beginTransaction()
-                    .add(R.id.main, AddFragment())
-                    .addToBackStack(null)
-                    .commit()
+//                val fragmentManager = supportFragmentManager
+//                fragmentManager
+//                    .beginTransaction()
+//                    .add(R.id.main, AddFragment())
+//                    .addToBackStack(null)
+//                    .commit()
+                val addBottomSheetDialog : BottomSheetDialogFragment = AddFragment()
+                addBottomSheetDialog.show(supportFragmentManager, "BSD Add Fragment")
             }
         }
 
