@@ -3,10 +3,11 @@ package com.c241ps093.ezfarm.ui.detail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.c241ps093.ezfarm.data.entity.LangkahLangkahItem
 import com.c241ps093.ezfarm.databinding.DetailRecyclerItemBinding
 
 class DetailRecyclerAdapter(
-    private val array : List<ToDo>,
+    private val array : List<LangkahLangkahItem?>?,
     private val onSwitchChange : (isCompleted : Boolean, position: Int)-> Unit
 ) : RecyclerView.Adapter<DetailRecyclerAdapter.ViewHolder>() {
 
@@ -24,16 +25,18 @@ class DetailRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val todoData = array[position]
+        val todoData = array?.get(position)
         holder.apply {
-            todoTitle.text = todoData.todoTitle
-            todoDesc.text = todoData.todoDesc
-            switchComponent.isChecked = todoData.todoCompleted
-            switchComponent.setOnCheckedChangeListener { _, isChecked ->
-                onSwitchChange(isChecked, position)
+            if(todoData != null){
+                todoTitle.text = todoData.tipe
+                todoDesc.text = todoData.deskripsi
+                switchComponent.isChecked = todoData.status ?: false
+                switchComponent.setOnCheckedChangeListener { _, isChecked ->
+                    onSwitchChange(isChecked, position)
+                }
             }
         }
     }
-    override fun getItemCount(): Int = array.size
+    override fun getItemCount(): Int = array?.size ?: 0
 
 }

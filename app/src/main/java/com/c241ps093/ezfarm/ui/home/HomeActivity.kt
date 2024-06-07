@@ -34,12 +34,6 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             addFab.setOnClickListener {
-//                val fragmentManager = supportFragmentManager
-//                fragmentManager
-//                    .beginTransaction()
-//                    .add(R.id.main, AddFragment())
-//                    .addToBackStack(null)
-//                    .commit()
                 val addBottomSheetDialog : BottomSheetDialogFragment = AddFragment()
                 addBottomSheetDialog.show(supportFragmentManager, "BSD Add Fragment")
             }
@@ -62,7 +56,6 @@ class HomeActivity : AppCompatActivity() {
         override fun addPlant(newPlant: Plant) {
             viewModel.addData(newPlant)
         }
-
     }
 
     private fun getViewModel(appCompatActivity: AppCompatActivity) : HomeViewModel {
