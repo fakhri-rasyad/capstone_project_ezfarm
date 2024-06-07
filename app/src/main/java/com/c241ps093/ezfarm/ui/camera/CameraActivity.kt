@@ -24,17 +24,18 @@ import com.c241ps093.ezfarm.ui.result.ResultActivity
 
 class CameraActivity : AppCompatActivity() {
 
-    private var cameraSelector : CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
-    private var _binding : ActivityCameraBinding? = null
+    private var _binding: ActivityCameraBinding? = null
     private val binding get() = _binding!!
 
     private fun allPermissionGranted() =
-        ContextCompat.checkSelfPermission(this,
+        ContextCompat.checkSelfPermission(
+            this,
             CAMERA_PERMISSION
         ) == PackageManager.PERMISSION_GRANTED
 
-    private fun startCamera(){
+    private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
@@ -118,11 +119,12 @@ class CameraActivity : AppCompatActivity() {
                 Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
             }
         }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       _binding = ActivityCameraBinding.inflate(layoutInflater)
+        _binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(!allPermissionGranted()){
+        if (!allPermissionGranted()) {
             requestPermissionLauncher.launch(CAMERA_PERMISSION)
         }
         startCamera()
@@ -149,6 +151,7 @@ class CameraActivity : AppCompatActivity() {
         super.onStart()
         orientationEventListener.enable()
     }
+
     override fun onStop() {
         super.onStop()
         orientationEventListener.disable()

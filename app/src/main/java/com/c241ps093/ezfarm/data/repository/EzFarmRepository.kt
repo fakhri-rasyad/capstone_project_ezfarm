@@ -15,11 +15,11 @@ class EzFarmRepository(
 
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 
-    suspend fun setHasUsedApp(){
+    suspend fun setHasUsedApp() {
         userPreferences.setHasUsedApp()
     }
 
-    suspend fun checkIfHasUsedApp() : Boolean {
+    suspend fun checkIfHasUsedApp(): Boolean {
         return userPreferences.checkIfHasUsedApp().first()
     }
 
@@ -27,18 +27,18 @@ class EzFarmRepository(
         executorService.execute { plantDatabase.plantDao().insert(plant) }
     }
 
-    fun getPlant() : LiveData<List<Plant>> {
+    fun getPlant(): LiveData<List<Plant>> {
         return plantDatabase.plantDao().getPlant()
     }
 
     companion object {
         @Volatile
-        private var INSTANCE : EzFarmRepository? = null
+        private var INSTANCE: EzFarmRepository? = null
         fun getInstance(
             userPreferences: UserPreferences,
             plantDatabase: PlantDatabase
-        ) : EzFarmRepository {
-            return INSTANCE ?: synchronized(this){
+        ): EzFarmRepository {
+            return INSTANCE ?: synchronized(this) {
                 val instance = EzFarmRepository(userPreferences, plantDatabase)
                 INSTANCE = instance
                 instance

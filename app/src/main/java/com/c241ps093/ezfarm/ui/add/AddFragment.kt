@@ -11,23 +11,20 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.DialogFragment
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.FragmentAddBinding
 import com.c241ps093.ezfarm.dateFormat
-import com.c241ps093.ezfarm.dateFormatter
 import com.c241ps093.ezfarm.makeToast
 import com.c241ps093.ezfarm.ui.home.HomeActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Calendar
 
 class AddFragment : BottomSheetDialogFragment() {
 
-    private var _binding : FragmentAddBinding? = null
+    private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
 
     private var addPlant: AddPlant? = null
@@ -65,9 +62,10 @@ class AddFragment : BottomSheetDialogFragment() {
             spinner.adapter = ArrayAdapter(
                 requireContext(),
                 androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,
-                plants)
+                plants
+            )
 
-            spinner.onItemSelectedListener = object : OnItemSelectedListener{
+            spinner.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
                     view: View?,
@@ -83,18 +81,19 @@ class AddFragment : BottomSheetDialogFragment() {
             }
 
             addButton.setOnClickListener {
-                if(plantPlantedDate == null){
+                if (plantPlantedDate == null) {
                     makeToast(requireContext(), getString(R.string.date_empty_error))
                     return@setOnClickListener
-                } else if (plantType == null){
+                } else if (plantType == null) {
                     makeToast(requireContext(), getString(R.string.plant_type_empty_error))
                     return@setOnClickListener
                 }
                 val newDummyData = Plant(
                     plantedDate = plantPlantedDate.toString(),
-                    harvestDate =  plantHarvestDate.toString(),
-                    growthStatus =  "Seeding",
-                    plantType =  plantType.toString())
+                    harvestDate = plantHarvestDate.toString(),
+                    growthStatus = "Seeding",
+                    plantType = plantType.toString()
+                )
                 addPlant?.addPlant(newDummyData)
                 dismiss()
             }
@@ -105,7 +104,7 @@ class AddFragment : BottomSheetDialogFragment() {
         super.onAttach(context)
 
         val parent = requireActivity()
-        if(parent is HomeActivity){
+        if (parent is HomeActivity) {
             this.addPlant = parent.addPlant
         }
     }
@@ -118,7 +117,8 @@ class AddFragment : BottomSheetDialogFragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun showDatePicker() {
         val datePickerDialog = DatePickerDialog(
-            requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+            requireContext(),
+            { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 val selectedDate = LocalDate.of(year, monthOfYear, dayOfMonth)
                 val formatter = DateTimeFormatter.ofPattern(dateFormat)
                 plantPlantedDate = selectedDate.format(formatter)
@@ -133,7 +133,7 @@ class AddFragment : BottomSheetDialogFragment() {
     }
 
     interface AddPlant {
-        fun addPlant(newPlant : Plant)
+        fun addPlant(newPlant: Plant)
     }
 }
 

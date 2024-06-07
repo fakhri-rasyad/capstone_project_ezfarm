@@ -8,7 +8,7 @@ import java.util.Date
 import java.util.Locale
 
 const val dateFormat = "dd-MM-yyyy"
-fun makeToast(context: Context, message: String){
+fun makeToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
@@ -17,7 +17,7 @@ fun dateFormatter(date: Date): String {
     return dateFormat.format(date)
 }
 
-fun stringDateFormatter(dateString: String) : Date? {
+fun stringDateFormatter(dateString: String): Date? {
     val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
     return formatter.parse(dateString)
 

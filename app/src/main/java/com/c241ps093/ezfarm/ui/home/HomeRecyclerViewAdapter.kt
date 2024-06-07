@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.HomeRecyclerItemBinding
-import com.c241ps093.ezfarm.dateFormatter
 import com.c241ps093.ezfarm.ui.detail.DetailActivity
 
-class HomeRecyclerViewAdapter(private val plantList: List<Plant>): RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+class HomeRecyclerViewAdapter(private val plantList: List<Plant>) :
+    RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(binding: HomeRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val plantName = binding.checkedChip
         val plantedDate = binding.plantedDateTv
@@ -19,7 +19,8 @@ class HomeRecyclerViewAdapter(private val plantList: List<Plant>): RecyclerView.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = HomeRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent ,false)
+        val binding =
+            HomeRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -34,7 +35,8 @@ class HomeRecyclerViewAdapter(private val plantList: List<Plant>): RecyclerView.
         holder.apply {
             plantName.text = plantData.plantType
             plantedDate.text = holder.itemView.context.getString(R.string.planted_date, plantDate)
-            harvestDate.text = holder.itemView.context.getString(R.string.harvest_date, harvestedDate)
+            harvestDate.text =
+                holder.itemView.context.getString(R.string.harvest_date, harvestedDate)
             growthStatus.text = plantData.growthStatus
         }
 

@@ -7,17 +7,20 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Plant::class], version = 1)
 abstract class PlantDatabase : RoomDatabase() {
-    abstract fun plantDao() : PlantDao
+    abstract fun plantDao(): PlantDao
 
     companion object {
         @Volatile
         private var INSTANCE: PlantDatabase? = null
+
         @JvmStatic
         fun getDatabase(context: Context): PlantDatabase {
             if (INSTANCE == null) {
                 synchronized(PlantDatabase::class.java) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        PlantDatabase::class.java, "note_database")
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        PlantDatabase::class.java, "note_database"
+                    )
                         .build()
                 }
             }

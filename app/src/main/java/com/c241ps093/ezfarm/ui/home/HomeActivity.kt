@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.ActivityMainBinding
 import com.c241ps093.ezfarm.ui.add.AddFragment
@@ -15,7 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: HomeViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,32 +33,34 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             addFab.setOnClickListener {
-                val addBottomSheetDialog : BottomSheetDialogFragment = AddFragment()
+                val addBottomSheetDialog: BottomSheetDialogFragment = AddFragment()
                 addBottomSheetDialog.show(supportFragmentManager, "BSD Add Fragment")
             }
         }
 
-        viewModel.getPlant().observe(this){
+        viewModel.getPlant().observe(this) {
             setUpRecyclerView(it)
         }
     }
+
     private fun setUpRecyclerView(
-        plantList : List<Plant>
-    ){
+        plantList: List<Plant>
+    ) {
         binding.apply {
             val adapter = HomeRecyclerViewAdapter(plantList)
             this.homeRv.adapter = adapter
         }
     }
 
-    internal var addPlant : AddFragment.AddPlant = object : AddFragment.AddPlant {
+    internal var addPlant: AddFragment.AddPlant = object : AddFragment.AddPlant {
         override fun addPlant(newPlant: Plant) {
             viewModel.addData(newPlant)
         }
     }
 
-    private fun getViewModel(appCompatActivity: AppCompatActivity) : HomeViewModel {
-        val viewModelFactory = ViewModelFactory.getInstance(application = appCompatActivity.application)
+    private fun getViewModel(appCompatActivity: AppCompatActivity): HomeViewModel {
+        val viewModelFactory =
+            ViewModelFactory.getInstance(application = appCompatActivity.application)
         return ViewModelProvider(appCompatActivity, viewModelFactory)[HomeViewModel::class.java]
     }
 

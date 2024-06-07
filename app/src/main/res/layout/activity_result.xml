@@ -1,171 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:circularflow_defaultRadius="@dimen/cardview_default_radius"
-    tools:context=".ui.result.ResultActivity"
-    android:orientation="vertical">
-    <ScrollView
+    tools:context=".ui.result.ResultActivity">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/back_button"
+        android:src="@drawable/camera_back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/plant_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/plant_name"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/back_button"
+        app:layout_constraintTop_toTopOf="@id/back_button" />
+
+    <TextView
+        android:id="@+id/plant_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/plant_status"
+        android:textColor="@color/dartmouth_green"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/back_button"
+        app:layout_constraintTop_toBottomOf="@id/plant_name" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeableImageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="140dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="32dp"
+        android:background="@drawable/home_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_button" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="20dp"
+        android:background="@drawable/bg_button_primary"
+        android:drawableStart="@drawable/add_ic"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:text="@string/add_plant_to_collection"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shapeableImageView" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/deskripsi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="32dp"
+        android:layout_marginBottom="32dp"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_btn">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/shapeableImageView"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="32dp"
-                android:background="@drawable/home_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/add_btn"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="20dp"
-                android:background="@drawable/bg_button_primary"
-                android:drawableStart="@drawable/add_ic"
-                android:paddingStart="32dp"
-                android:paddingEnd="32dp"
-                android:text="@string/add_plant_to_collection"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/shapeableImageView" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/deskripsi"
+            <LinearLayout
+                android:id="@+id/linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="32dp"
-                android:layout_marginBottom="32dp"
-                app:cardCornerRadius="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/add_btn">
+                android:layout_gravity="start"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <ImageView
+                    android:id="@+id/picture"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@string/deskripsi_logo"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/deskripsi_logo" />
+
+                <TextView
+                    android:id="@+id/deskripsi_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/dartmouth_green"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="@string/deskripsi" />
+            </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/linear"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginVertical="16dp"
-                        android:orientation="horizontal"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_editor_absoluteX="8dp">
-
-                        <ImageView
-                            android:id="@+id/picture"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:contentDescription="@string/deskripsi_logo"
-                            android:scaleType="centerCrop"
-                            tools:src="@drawable/deskripsi_logo" />
-
-                        <TextView
-                            android:id="@+id/deskripsi_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:textColor="@color/dartmouth_green"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            tools:text="@string/deskripsi" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/deskripsi_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginVertical="8dp"
-                        android:paddingBottom="16dp"
-                        android:textSize="14sp"
-                        android:textStyle="normal"
-                        tools:text="@string/lorem"
-                        app:layout_constraintTop_toBottomOf="@id/linear"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/penanganan"
+            <TextView
+                android:id="@+id/deskripsi_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="32dp"
-                android:layout_marginBottom="32dp"
-                app:cardCornerRadius="25dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="16dp"
+                android:paddingBottom="16dp"
+                android:textSize="14sp"
+                android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/deskripsi">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:id="@+id/linear_penanganan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginVertical="16dp"
-                        android:orientation="horizontal"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_editor_absoluteX="8dp">
-
-                        <ImageView
-                            android:id="@+id/picture_penanganan"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:contentDescription="@string/deskripsi_logo"
-                            android:scaleType="centerCrop"
-                            tools:src="@drawable/deskripsi_logo" />
-
-                        <TextView
-                            android:id="@+id/penanganan_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:textColor="@color/dartmouth_green"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            tools:text="@string/Penanganan" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/penanganan_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:textSize="14sp"
-                        android:textStyle="normal"
-                        android:layout_marginVertical="8dp"
-                        android:paddingBottom="16dp"
-                        tools:text="@string/penanganan_content"
-                        app:layout_constraintTop_toBottomOf="@id/linear_penanganan"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toBottomOf="@id/linear"
+                tools:text="@string/lorem" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/penanganan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="32dp"
+        android:layout_marginBottom="32dp"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deskripsi">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linear_penanganan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp">
+
+                <ImageView
+                    android:id="@+id/picture_penanganan"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@string/deskripsi_logo"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/deskripsi_logo" />
+
+                <TextView
+                    android:id="@+id/penanganan_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/dartmouth_green"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="@string/Penanganan" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/penanganan_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="16dp"
+                android:paddingBottom="16dp"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_penanganan"
+                tools:text="@string/penanganan_content" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

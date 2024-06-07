@@ -1,6 +1,5 @@
 package com.c241ps093.ezfarm.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +8,9 @@ import com.c241ps093.ezfarm.data.entity.TrackingDataResponse
 import com.c241ps093.ezfarm.data.entity.TrackingDataResponseItem
 import com.c241ps093.ezfarm.data.repository.EzFarmRepository
 
-class DetailViewModel(private val ezFarmRepository: EzFarmRepository) : ViewModel(){
+class DetailViewModel(private val ezFarmRepository: EzFarmRepository) : ViewModel() {
     private val _todoList = MutableLiveData<List<LangkahLangkahItem>>()
-    val todoList : LiveData<List<LangkahLangkahItem>> = _todoList
+    val todoList: LiveData<List<LangkahLangkahItem>> = _todoList
 
     private val paddyTrackingData = TrackingDataResponse(
         trackingDataResponse = listOf(
@@ -36,7 +35,7 @@ class DetailViewModel(private val ezFarmRepository: EzFarmRepository) : ViewMode
     )
 
     private val _trackingData = MutableLiveData<List<TrackingDataResponseItem?>>()
-    val trackingData : LiveData<List<TrackingDataResponseItem?>> = _trackingData
+    val trackingData: LiveData<List<TrackingDataResponseItem?>> = _trackingData
 
     init {
         getTodoData()
@@ -48,7 +47,7 @@ class DetailViewModel(private val ezFarmRepository: EzFarmRepository) : ViewMode
         _trackingData.postValue(data!!)
     }
 
-    fun getTodoData(){
+    fun getTodoData() {
         _trackingData.postValue(paddyTrackingData.trackingDataResponse!!)
     }
 }

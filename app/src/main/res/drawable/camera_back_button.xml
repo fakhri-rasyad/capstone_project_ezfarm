@@ -3,22 +3,28 @@
     <item>
         <shape>
             <corners android:radius="4dp" />
-            <solid android:color="@color/white"/>
+            <solid android:color="@color/white" />
             <padding
                 android:bottom="8dp"
-                android:top="8dp"
                 android:left="8dp"
                 android:right="8dp"
-                />
-            <stroke android:color="@color/dartmouth_green" android:width="3dp"/>
+                android:top="8dp" />
+            <stroke
+                android:width="3dp"
+                android:color="@color/dartmouth_green" />
         </shape>
     </item>
     <item>
         <vector
+            android:width="24dp"
             android:height="24dp"
-            android:tint="#106A52" android:viewportHeight="24" android:viewportWidth="24" android:width="24dp">
+            android:tint="#106A52"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
 
-            <path android:fillColor="@android:color/white" android:pathData="M17.77,3.77l-1.77,-1.77l-10,10l10,10l1.77,-1.77l-8.23,-8.23z"/>
+            <path
+                android:fillColor="@android:color/white"
+                android:pathData="M17.77,3.77l-1.77,-1.77l-10,10l10,10l1.77,-1.77l-8.23,-8.23z" />
 
         </vector>
     </item>

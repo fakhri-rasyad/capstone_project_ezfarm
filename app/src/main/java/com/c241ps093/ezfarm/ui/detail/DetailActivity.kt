@@ -17,10 +17,11 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 class DetailActivity : AppCompatActivity() {
-    private var _binding : ActivityDetailBinding? = null
+    private var _binding: ActivityDetailBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel : DetailViewModel
+    private lateinit var viewModel: DetailViewModel
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +31,13 @@ class DetailActivity : AppCompatActivity() {
 
         viewModel = getViewModel(this)
 
-        val plantData = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        val plantData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(PLANT_DATA, Plant::class.java)
         } else {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra(PLANT_DATA)
         }
-        viewModel.trackingData.observe(this){
+        viewModel.trackingData.observe(this) {
             val data = it[0]
             setUpRecyclerView(data?.langkahLangkah)
             binding.apply {
@@ -57,7 +58,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getDayDifference(plantData: Plant?): String{
+    fun getDayDifference(plantData: Plant?): String {
         val formatter = DateTimeFormatter.ofPattern(dateFormat)
         val today = LocalDate.now()
         val plantedDate = LocalDate.parse(plantData?.plantedDate, formatter)
@@ -65,7 +66,7 @@ class DetailActivity : AppCompatActivity() {
         return dayDifference.toString()
     }
 
-    private fun setUpRecyclerView(todoList: List<LangkahLangkahItem?>?){
+    private fun setUpRecyclerView(todoList: List<LangkahLangkahItem?>?) {
         val linearLayoutManager = LinearLayoutManager(this)
         binding.rvStorylist.apply {
             layoutManager = linearLayoutManager
@@ -73,7 +74,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateTodo(isCompleted: Boolean, position: Int)  {
+    private fun updateTodo(isCompleted: Boolean, position: Int) {
         viewModel.updateTodoList(
             isCompleted,
             position
@@ -85,7 +86,7 @@ class DetailActivity : AppCompatActivity() {
         _binding = null
     }
 
-    private fun getViewModel(appCompatActivity: AppCompatActivity) : DetailViewModel {
+    private fun getViewModel(appCompatActivity: AppCompatActivity): DetailViewModel {
         val viewModelFactory = ViewModelFactory.getInstance(appCompatActivity.application)
         return ViewModelProvider(this, viewModelFactory)[DetailViewModel::class.java]
     }

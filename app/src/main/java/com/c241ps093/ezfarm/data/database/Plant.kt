@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 
 @Entity
 @Parcelize
-data class Plant (
+data class Plant(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Int = 0,

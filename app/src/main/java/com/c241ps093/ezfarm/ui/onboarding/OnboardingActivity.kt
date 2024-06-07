@@ -19,7 +19,7 @@ class OnboardingActivity : AppCompatActivity() {
         _binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.main.addTransitionListener(object : MotionLayout.TransitionListener{
+        binding.main.addTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?,
                 startId: Int,
@@ -37,9 +37,9 @@ class OnboardingActivity : AppCompatActivity() {
 
             @SuppressLint("ClickableViewAccessibility")
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                if(currentId == R.id.third_onboarding){
+                if (currentId == R.id.third_onboarding) {
                     binding.forwardArrow.setOnTouchListener { _, event ->
-                        if(event.action == MotionEvent.ACTION_DOWN){
+                        if (event.action == MotionEvent.ACTION_DOWN) {
                             val intent = Intent(this@OnboardingActivity, HomeActivity::class.java)
                             startActivity(intent)
                             finish()

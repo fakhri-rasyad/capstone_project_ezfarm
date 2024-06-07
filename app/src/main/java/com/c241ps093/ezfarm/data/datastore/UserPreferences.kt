@@ -9,8 +9,9 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-val Context.datastore : DataStore<Preferences> by preferencesDataStore(name = "preferences")
-class UserPreferences private constructor(private val dataStore: DataStore<Preferences>){
+val Context.datastore: DataStore<Preferences> by preferencesDataStore(name = "preferences")
+
+class UserPreferences private constructor(private val dataStore: DataStore<Preferences>) {
     private val firstUsage = booleanPreferencesKey(name = "first_time_use")
 
     suspend fun setHasUsedApp() {
@@ -19,7 +20,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
-    fun checkIfHasUsedApp() : Flow<Boolean> {
+    fun checkIfHasUsedApp(): Flow<Boolean> {
         return dataStore.data.map {
             it[firstUsage] ?: false
         }

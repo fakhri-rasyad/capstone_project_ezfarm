@@ -16,5 +16,5 @@ interface PlantDao {
     fun delete(plant: Plant)
 
     @Query("SELECT * from plant ORDER BY id ASC")
-    fun getPlant() : LiveData<List<Plant>>
+    fun getPlant(): LiveData<List<Plant>>
 }

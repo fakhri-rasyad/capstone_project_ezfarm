@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/penanganan"
@@ -48,21 +47,22 @@
                 android:textStyle="bold"
                 tools:text="@string/penanganan_title" />
         </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linear_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/linear"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear">
 
             <TextView
                 android:id="@+id/deskripsi_content"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
                 android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
                 android:paddingBottom="16dp"
                 android:textSize="14sp"
                 android:textStyle="normal"

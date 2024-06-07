@@ -16,17 +16,17 @@ import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
 
-    private var _binding : ActivitySplashBinding? = null
+    private var _binding: ActivitySplashBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel : SplashViewModel
+    private lateinit var viewModel: SplashViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivitySplashBinding.inflate(layoutInflater)
         viewModel = getViewModel(this)
         setContentView(binding.root)
 
-        binding.main.setTransitionListener(object : MotionLayout.TransitionListener{
+        binding.main.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?,
                 startId: Int,
@@ -44,14 +44,14 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                if(currentId == R.id.show_logo){
+                if (currentId == R.id.show_logo) {
 
-                    if(viewModel.checkHasUsedApp()) {
+                    if (viewModel.checkHasUsedApp()) {
                         val intent = Intent(this@SplashActivity, HomeActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
-                        lifecycleScope.launch { viewModel.setHasUsedApp()}
+                        lifecycleScope.launch { viewModel.setHasUsedApp() }
                         val intent = Intent(this@SplashActivity, WelcomeActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -75,7 +75,7 @@ class SplashActivity : AppCompatActivity() {
         _binding = null
     }
 
-    private fun getViewModel(appCompatActivity: AppCompatActivity) : SplashViewModel{
+    private fun getViewModel(appCompatActivity: AppCompatActivity): SplashViewModel {
         val viewModelFactory = ViewModelFactory.getInstance(appCompatActivity.application)
         return ViewModelProvider(appCompatActivity, viewModelFactory)[SplashViewModel::class.java]
     }
