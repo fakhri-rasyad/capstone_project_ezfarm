@@ -75,8 +75,7 @@ class CameraActivity : AppCompatActivity() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val intent = Intent(this@CameraActivity, ResultActivity::class.java)
-//                    intent.putExtra(ResultActivity.IMAGE_URI, output.savedUri.toString())
-//                    intent.putExtra(ResultActivity.RESULT_CODE, CAMERAX_RESULT)
+                    intent.putExtra(ResultActivity.PLANT_URI, output.savedUri.toString())
                     startActivity(intent)
                 }
 
