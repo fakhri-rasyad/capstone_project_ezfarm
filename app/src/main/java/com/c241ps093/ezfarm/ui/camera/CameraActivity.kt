@@ -4,6 +4,8 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.OrientationEventListener
@@ -17,10 +19,13 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.core.view.doOnLayout
 import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.createCustomTempFile
 import com.c241ps093.ezfarm.databinding.ActivityCameraBinding
 import com.c241ps093.ezfarm.ui.result.ResultActivity
+import java.io.File
+import java.io.FileOutputStream
 
 class CameraActivity : AppCompatActivity() {
 
@@ -74,11 +79,12 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    val uri = output.savedUri
+
                     val intent = Intent(this@CameraActivity, ResultActivity::class.java)
-                    intent.putExtra(ResultActivity.PLANT_URI, output.savedUri.toString())
+                    intent.putExtra(ResultActivity.PLANT_URI, uri.toString())
                     startActivity(intent)
                 }
-
                 override fun onError(exc: ImageCaptureException) {
                     Toast.makeText(
                         this@CameraActivity,
@@ -156,10 +162,10 @@ class CameraActivity : AppCompatActivity() {
         orientationEventListener.disable()
     }
 
+
+
     companion object {
         private const val CAMERA_PERMISSION = android.Manifest.permission.CAMERA
         private const val TAG = "Camera Activity"
-        const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
-        const val CAMERAX_RESULT = 200
     }
 }

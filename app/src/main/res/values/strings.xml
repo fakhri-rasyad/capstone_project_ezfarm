@@ -52,6 +52,7 @@
     <string name="penanganan_content">
         a. Pratanam\n• Sanitasi tanaman inang\n• Pemilihan varietas tahan sesuai sebaran ras\n\nb. Pesemaian\n• Penggunaan benih sehat\n• Sanitasi inang pada saluran irigasi\n• Hindari penggenangan terlalu dalam\n\nc. Tanaman Muda (Tanam - Anakan maksimum)\n• Pemupukan berimbang sesuai anjuran setempat\n• Sanitasi rerumputan sumber patogen\n• Pengeringan lahan secara berkala, yaitu 1 hari diairi dan 3-4 hari dikeringkan, terutama pada daerah endemik serangan penyakit\n\nd. Pengendalian HDB dengan Bakteri Antagonis CorynebacteriumSp. (BPOPT Jatisari, Karawang)\n• Aplikasi efektif 3 kali, yaitu saat:\n• Perlakuan benih\n• 28 hst\n• 42 hst
     </string>
+    <string name="scan_result_image">scan result image</string>
     <string-array name="Plants">
         <item>Rice</item>
         <item>Wheat</item>

@@ -1,8 +1,11 @@
 package com.c241ps093.ezfarm
 
+import android.app.Application
 import android.content.Context
+import android.graphics.Bitmap
 import android.widget.Toast
 import java.io.File
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -20,9 +23,7 @@ fun dateFormatter(date: Date): String {
 fun stringDateFormatter(dateString: String): Date? {
     val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
     return formatter.parse(dateString)
-
 }
-
 fun createCustomTempFile(context: Context): File {
     val filesDir = context.externalCacheDir
     return File.createTempFile("today", ".jpg", filesDir)
