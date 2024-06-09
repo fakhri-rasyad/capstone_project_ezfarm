@@ -1,4 +1,4 @@
-package com.c241ps093.ezfarm.viewmodel
+package com.c241ps093.ezfarm.ui.splash
 
 import androidx.lifecycle.ViewModel
 import com.c241ps093.ezfarm.data.repository.EzFarmRepository

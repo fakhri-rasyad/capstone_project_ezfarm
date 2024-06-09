@@ -10,7 +10,6 @@ import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.databinding.ActivitySplashBinding
 import com.c241ps093.ezfarm.ui.home.HomeActivity
 import com.c241ps093.ezfarm.ui.welcome.WelcomeActivity
-import com.c241ps093.ezfarm.viewmodel.SplashViewModel
 import com.c241ps093.ezfarm.viewmodel.factory.ViewModelFactory
 import kotlinx.coroutines.launch
 
