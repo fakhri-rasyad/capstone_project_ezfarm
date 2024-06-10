@@ -37,9 +37,14 @@ class ResultActivity : AppCompatActivity() {
         viewModel.identificationData.observe(this){
             binding.apply {
                 if (it != null) {
+                    svData.visibility = View.VISIBLE
                     val data = it.resultWithPenanganan
                     plantName.text = data.namaTanaman
                     plantStatus.text = data.penyakit
+                    deskripsiContent.text = data.deskripsi
+                    gejalaContent.text = data.gejala.joinToString("\n")
+                    penangananContent.text = data.penanganan.joinToString("\n")
+                    pencegahanContent.text = data.pencegahan.joinToString("\n")
                 }
             }
         }

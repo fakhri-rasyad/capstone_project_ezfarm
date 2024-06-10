@@ -38,6 +38,8 @@
     <string name="add_plant_to_collection">Add to Your Plant Collection</string>
     <string name="deskripsi_logo">logo deskripsi</string>
     <string name="deskripsi">Deskripsi</string>
+    <string name="gejala">Gejala</string>
+    <string name="pencegahan">Pencegahan</string>
     <string name="Penanganan">Penanganan</string>
     <string name="day">Day %1$s</string>
     <string name="penanganan_title">penanganan_title</string>
