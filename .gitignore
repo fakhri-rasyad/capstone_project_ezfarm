@@ -13,6 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+gradle.properties
+app/build.gradle.kts
 # Gradle files
 .gradle/
 build/
