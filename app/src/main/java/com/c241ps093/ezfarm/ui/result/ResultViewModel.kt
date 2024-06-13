@@ -1,6 +1,8 @@
 package com.c241ps093.ezfarm.ui.result
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData

@@ -33,7 +33,6 @@ class ResultActivity : AppCompatActivity() {
         viewModel.isLoading.observe(this){
             binding.pgBar.visibility = if(it) View.VISIBLE else View.INVISIBLE
         }
-
         viewModel.identificationData.observe(this){
             binding.apply {
                 if (it != null) {

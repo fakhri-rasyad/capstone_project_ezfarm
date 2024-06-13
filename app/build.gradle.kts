@@ -17,7 +17,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", "\"https://deploy-api-ezfarm-7a4obbivma-et.a.run.app/\"")
     }
 
     buildFeatures {

@@ -14,10 +14,10 @@
 .cxx
 local.properties
 gradle.properties
-app/build.gradle.kts
 # Gradle files
 .gradle/
 build/
+app/build.gradle.kts
 
 # Local configuration file (sdk path, etc)
 
