@@ -1,41 +1,39 @@
 package com.c241ps093.ezfarm.data.entity
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class TrackingDataResponse(
 
-    @field:SerializedName("TrackingDataResponse")
-    val trackingDataResponse: List<TrackingDataResponseItem?>? = null
-) : Parcelable
+	@field:SerializedName("data")
+	val data: Data? = null
+)
 
-@Parcelize
-data class LangkahLangkahItem(
+data class LangkahItem(
 
-    @field:SerializedName("deskripsi")
-    val deskripsi: String? = null,
+	@field:SerializedName("status")
+	val status: Boolean? = null,
 
-    @field:SerializedName("tipe")
-    val tipe: String? = null,
+	@field:SerializedName("desc")
+	val desc: String? = null
+)
 
-    @field:SerializedName("status")
-    var status: Boolean? = null
-) : Parcelable
+data class Data(
 
-@Parcelize
-data class TrackingDataResponseItem(
+	@field:SerializedName("day")
+	val day: List<DayItem?>? = null
+)
 
-    @field:SerializedName("hari")
-    val hari: Int? = null,
+data class DayItem(
 
-    @field:SerializedName("urlGambar")
-    val urlGambar: String? = null,
+	@field:SerializedName("langkah")
+	val langkah: List<LangkahItem?>? = null,
 
-    @field:SerializedName("langkahLangkah")
-    val langkahLangkah: List<LangkahLangkahItem?>? = null,
+	@field:SerializedName("Aktivitas")
+	val aktivitas: String? = null,
 
-    @field:SerializedName("judul")
-    val judul: String? = null
-) : Parcelable
+	@field:SerializedName("id")
+	val id: Int? = null,
+
+	@field:SerializedName("day")
+	val day: String? = null
+)

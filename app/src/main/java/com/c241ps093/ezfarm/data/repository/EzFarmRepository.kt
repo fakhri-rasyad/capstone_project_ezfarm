@@ -27,7 +27,7 @@ class EzFarmRepository(
     }
 
     fun insertPlant(plant: Plant) {
-        executorService.execute { plantDatabase.plantDao().insert(plant) }
+        executorService.execute { plantDatabase.plantDao().insertPlant(plant) }
     }
 
     fun getPlant(): LiveData<List<Plant>> {

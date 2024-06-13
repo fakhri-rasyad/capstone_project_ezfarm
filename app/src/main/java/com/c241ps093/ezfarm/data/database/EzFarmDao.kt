@@ -8,13 +8,19 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface PlantDao {
+interface EzFarmDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(plant: Plant)
+    fun insertPlant(plant: Plant)
 
     @Delete
-    fun delete(plant: Plant)
+    fun deletePlant(plant: Plant)
 
     @Query("SELECT * from plant ORDER BY id ASC")
     fun getPlant(): LiveData<List<Plant>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertTodo(todo: PlantTodo)
+
+    @Query("SELECT * FROM planttodo WHERE plantId LIKE :plantId AND todoDay LIKE :todoDate")
+    fun getTodo(plantId : String, todoDate: Int) : LiveData<List<PlantTodo>>
 }

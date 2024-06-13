@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Plant::class], version = 1)
 abstract class PlantDatabase : RoomDatabase() {
-    abstract fun plantDao(): PlantDao
+    abstract fun plantDao(): EzFarmDao
 
     companion object {
         @Volatile

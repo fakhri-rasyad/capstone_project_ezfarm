@@ -6,9 +6,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.c241ps093.ezfarm.data.database.Plant
-import com.c241ps093.ezfarm.data.entity.LangkahLangkahItem
+import com.c241ps093.ezfarm.data.entity.LangkahItem
 import com.c241ps093.ezfarm.databinding.ActivityDetailBinding
 import com.c241ps093.ezfarm.dateFormat
 import com.c241ps093.ezfarm.viewmodel.factory.ViewModelFactory
@@ -39,15 +38,11 @@ class DetailActivity : AppCompatActivity() {
         }
         viewModel.trackingData.observe(this) {
             val data = it[0]
-            setUpRecyclerView(data?.langkahLangkah)
+            setUpRecyclerView(data?.langkah)
             binding.apply {
                 plantName.text = plantData?.plantType
                 plantStatus.text = plantData?.growthStatus
-                dayTitle.text = data?.judul
-                Glide
-                    .with(this@DetailActivity)
-                    .load(data?.urlGambar)
-                    .into(this.shapeableImageView)
+                dayTitle.text = data?.day
                 backButton.setOnClickListener {
                     finish()
                 }
@@ -66,7 +61,7 @@ class DetailActivity : AppCompatActivity() {
         return dayDifference.toString()
     }
 
-    private fun setUpRecyclerView(todoList: List<LangkahLangkahItem?>?) {
+    private fun setUpRecyclerView(todoList: List<LangkahItem?>?) {
         val linearLayoutManager = LinearLayoutManager(this)
         binding.rvStorylist.apply {
             layoutManager = linearLayoutManager
