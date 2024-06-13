@@ -13,7 +13,7 @@ data class PlantTodo(
     @ColumnInfo(name = "todoId")
     val todoId : Int = 0,
     @ColumnInfo(name = "plantId")
-    val plantId : String,
+    val plantId : Int,
     @ColumnInfo(name = "todoDay")
     val toDoDay : Int,
     @ColumnInfo(name = "desc")

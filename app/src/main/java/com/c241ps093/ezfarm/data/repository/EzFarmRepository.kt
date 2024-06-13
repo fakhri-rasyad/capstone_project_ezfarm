@@ -3,6 +3,7 @@ package com.c241ps093.ezfarm.data.repository
 import androidx.lifecycle.LiveData
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.data.database.PlantDatabase
+import com.c241ps093.ezfarm.data.database.PlantTodo
 import com.c241ps093.ezfarm.data.datastore.UserPreferences
 import com.c241ps093.ezfarm.data.retrofit.ApiService
 import kotlinx.coroutines.flow.first
@@ -27,12 +28,24 @@ class EzFarmRepository(
     }
 
     fun insertPlant(plant: Plant) {
-        executorService.execute { plantDatabase.plantDao().insertPlant(plant) }
+        executorService.execute { plantDatabase.ezFarmDao().insertPlant(plant) }
     }
 
     fun getPlant(): LiveData<List<Plant>> {
-        return plantDatabase.plantDao().getPlant()
+        return plantDatabase.ezFarmDao().getPlant()
     }
+
+    fun checkTodo(plantId: Int) = plantDatabase.ezFarmDao().checkIfPlantTodoExist(plantId)
+
+    fun getTodoFromAPI() = apiService.getTrackingData()
+    fun getTodoFromDatabase(plantId : Int, todoDate: Int) = plantDatabase.ezFarmDao().getTodo(plantId, todoDate)
+
+    fun insertTodo(todo: PlantTodo){
+        executorService.execute { plantDatabase.ezFarmDao().insertTodo(todo) }
+    }
+
+
+    fun updateTodo(todoId : Int, plantStatus: Boolean) = plantDatabase.ezFarmDao().updateTodo(plantStatus, todoId)
 
     fun uploadImage(file : MultipartBody.Part) = apiService.postData(file = file)
 

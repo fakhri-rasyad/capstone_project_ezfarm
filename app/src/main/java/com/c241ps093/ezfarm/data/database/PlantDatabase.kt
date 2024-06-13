@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Plant::class], version = 1)
+@Database(entities = [Plant::class, PlantTodo::class], version = 1)
 abstract class PlantDatabase : RoomDatabase() {
-    abstract fun plantDao(): EzFarmDao
+    abstract fun ezFarmDao(): EzFarmDao
 
     companion object {
         @Volatile
