@@ -41,9 +41,9 @@ class ResultActivity : AppCompatActivity() {
                     plantName.text = data.namaTanaman
                     plantStatus.text = data.penyakit
                     deskripsiContent.text = data.deskripsi
-                    gejalaContent.text = data.gejala.joinToString("\n")
-                    penangananContent.text = data.penanganan.joinToString("\n")
-                    pencegahanContent.text = data.pencegahan.joinToString("\n")
+                    gejalaContent.text = data.gejala.joinToString("\n\n")
+                    penangananContent.text = data.penanganan.joinToString("\n\n")
+                    pencegahanContent.text = data.pencegahan.joinToString("\n\n")
                 }
             }
         }
