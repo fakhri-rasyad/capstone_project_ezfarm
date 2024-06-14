@@ -1,12 +1,15 @@
 package com.c241ps093.ezfarm.data.repository
 
 import androidx.lifecycle.LiveData
+import com.c241ps093.ezfarm.BuildConfig
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.data.database.PlantDatabase
 import com.c241ps093.ezfarm.data.database.PlantTodo
 import com.c241ps093.ezfarm.data.datastore.UserPreferences
 import com.c241ps093.ezfarm.data.retrofit.ApiService
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import okhttp3.MultipartBody
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -35,8 +38,13 @@ class EzFarmRepository(
         return plantDatabase.ezFarmDao().getPlant()
     }
 
-    fun checkTodo(plantId: Int) = plantDatabase.ezFarmDao().checkIfPlantTodoExist(plantId)
-
+    fun checkTodo(plantId: Int) : Boolean {
+        var exist : Boolean
+        runBlocking(Dispatchers.IO) {
+            exist = plantDatabase.ezFarmDao().checkIfPlantTodoExist(plantId)
+        }
+        return exist
+    }
     fun getTodoFromAPI() = apiService.getTrackingData()
     fun getTodoFromDatabase(plantId : Int, todoDate: Int) = plantDatabase.ezFarmDao().getTodo(plantId, todoDate)
 

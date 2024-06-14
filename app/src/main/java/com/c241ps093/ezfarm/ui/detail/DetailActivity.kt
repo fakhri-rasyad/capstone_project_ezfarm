@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps093.ezfarm.data.database.Plant
-import com.c241ps093.ezfarm.data.entity.LangkahItem
+import com.c241ps093.ezfarm.data.database.PlantTodo
 import com.c241ps093.ezfarm.databinding.ActivityDetailBinding
 import com.c241ps093.ezfarm.dateFormat
 import com.c241ps093.ezfarm.viewmodel.factory.ViewModelFactory
@@ -36,13 +36,18 @@ class DetailActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra(PLANT_DATA)
         }
-        viewModel.trackingData.observe(this) {
-            val data = it[0]
-            setUpRecyclerView(data?.langkah)
+
+        if (plantData != null) {
+            viewModel.getTodoList(plantData.id, todoDate = getDayDifference(plantData))
+        }
+
+        viewModel.toDo.observe(this) {
+            val data = it[getDayDifference(plantData)]
+            setUpRecyclerView(it)
             binding.apply {
                 plantName.text = plantData?.plantType
                 plantStatus.text = plantData?.growthStatus
-                dayTitle.text = data?.day
+                dayTitle.text = data.toDoDay.toString()
                 backButton.setOnClickListener {
                     finish()
                 }
@@ -53,15 +58,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getDayDifference(plantData: Plant?): String {
+    fun getDayDifference(plantData: Plant?): Int {
         val formatter = DateTimeFormatter.ofPattern(dateFormat)
         val today = LocalDate.now()
         val plantedDate = LocalDate.parse(plantData?.plantedDate, formatter)
-        val dayDifference = ChronoUnit.DAYS.between(plantedDate, today) + 1
-        return dayDifference.toString()
+        return (ChronoUnit.DAYS.between(plantedDate, today) + 1).toInt()
     }
 
-    private fun setUpRecyclerView(todoList: List<LangkahItem?>?) {
+    private fun setUpRecyclerView(todoList: List<PlantTodo?>?) {
         val linearLayoutManager = LinearLayoutManager(this)
         binding.rvStorylist.apply {
             layoutManager = linearLayoutManager
@@ -69,10 +73,10 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateTodo(isCompleted: Boolean, position: Int) {
+    private fun updateTodo(isCompleted: Boolean, todoId: Int) {
         viewModel.updateTodoList(
             isCompleted,
-            position
+            todoId
         )
     }
 

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.c241ps093.ezfarm.data.database.PlantTodo
 import com.c241ps093.ezfarm.data.entity.TrackingDataResponse
 import com.c241ps093.ezfarm.data.repository.EzFarmRepository
+import com.c241ps093.ezfarm.getErrorResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +38,6 @@ class DetailViewModel(private val ezFarmRepository: EzFarmRepository) : ViewMode
                                 )
                                 ezFarmRepository.insertTodo(newPlantTodo)
                             }
-
                         }
                         getTodoList(plantId, todoDate)
                     }

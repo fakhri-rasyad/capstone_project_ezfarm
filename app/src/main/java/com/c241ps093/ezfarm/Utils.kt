@@ -1,6 +1,5 @@
 package com.c241ps093.ezfarm
 
-import android.app.Application
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,14 +7,12 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.widget.Toast
 import androidx.exifinterface.media.ExifInterface
+import com.c241ps093.ezfarm.data.entity.SimpleResponse
 import com.google.gson.Gson
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 const val dateFormat = "dd-MM-yyyy"
 fun makeToast(context: Context, message: String) {
@@ -73,4 +70,8 @@ fun rotateImage(source: Bitmap, angle: Float): Bitmap {
     return Bitmap.createBitmap(
         source, 0, 0, source.width, source.height, matrix, true
     )
+}
+
+fun getErrorResponse(response:String): SimpleResponse {
+    return Gson().fromJson(response, SimpleResponse::class.java)
 }
