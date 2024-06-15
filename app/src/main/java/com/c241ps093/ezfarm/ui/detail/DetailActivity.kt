@@ -2,10 +2,13 @@ package com.c241ps093.ezfarm.ui.detail
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.data.database.PlantTodo
 import com.c241ps093.ezfarm.databinding.ActivityDetailBinding
@@ -45,13 +48,14 @@ class DetailActivity : AppCompatActivity() {
                     viewModel.getTodoList(plantId)
                 }
                 viewModel.getTodoFromDatabase(plantId, todoDate).observe(this){ listOfPlantTodo ->
+                    binding.progressBar.visibility = View.INVISIBLE
+                    Log.e("DETAIL", listOfPlantTodo.toString())
                     if(listOfPlantTodo.isNotEmpty()){
-                        val data = listOfPlantTodo[getDayDifference(plantData)]
                         setUpRecyclerView(listOfPlantTodo)
                         binding.apply {
                             plantName.text = plantData.plantType
                             plantStatus.text = plantData.growthStatus
-                            dayTitle.text = data.toDoDay.toString()
+                            dayTitle.text = getString(R.string.day, listOfPlantTodo[0].toDoDay.toString())
                             backButton.setOnClickListener {
                                 finish()
                             }

@@ -18,7 +18,6 @@ import retrofit2.Response
 
 class DetailViewModel(private val ezFarmRepository: EzFarmRepository) : ViewModel() {
     fun getTodoFromDatabase(plantId: Int, todoDate: Int) : LiveData<List<PlantTodo>> = ezFarmRepository.getTodoFromDatabase(plantId, todoDate)
-
     fun checkTodo(plantId: Int) : LiveData<Boolean> = ezFarmRepository.checkTodo(plantId)
     fun getTodoList(plantId: Int){
         val client = ezFarmRepository.getTodoFromAPI()
