@@ -7,8 +7,10 @@ import com.c241ps093.ezfarm.data.database.PlantDatabase
 import com.c241ps093.ezfarm.data.database.PlantTodo
 import com.c241ps093.ezfarm.data.datastore.UserPreferences
 import com.c241ps093.ezfarm.data.retrofit.ApiService
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import okhttp3.MultipartBody
 import java.util.concurrent.ExecutorService
@@ -29,32 +31,23 @@ class EzFarmRepository(
     suspend fun checkIfHasUsedApp(): Boolean {
         return userPreferences.checkIfHasUsedApp().first()
     }
+    //Database
 
     fun insertPlant(plant: Plant) {
         executorService.execute { plantDatabase.ezFarmDao().insertPlant(plant) }
     }
-
     fun getPlant(): LiveData<List<Plant>> {
         return plantDatabase.ezFarmDao().getPlant()
     }
-
-    fun checkTodo(plantId: Int) : Boolean {
-        var exist : Boolean
-        runBlocking(Dispatchers.IO) {
-            exist = plantDatabase.ezFarmDao().checkIfPlantTodoExist(plantId)
-        }
-        return exist
-    }
+    fun checkTodo(plantId: Int) : LiveData<Boolean> =  plantDatabase.ezFarmDao().checkIfPlantTodoExist(plantId)
     fun getTodoFromAPI() = apiService.getTrackingData()
     fun getTodoFromDatabase(plantId : Int, todoDate: Int) = plantDatabase.ezFarmDao().getTodo(plantId, todoDate)
-
     fun insertTodo(todo: PlantTodo){
         executorService.execute { plantDatabase.ezFarmDao().insertTodo(todo) }
     }
-
-
     fun updateTodo(todoId : Int, plantStatus: Boolean) = plantDatabase.ezFarmDao().updateTodo(plantStatus, todoId)
 
+    //Network
     fun uploadImage(file : MultipartBody.Part) = apiService.postData(file = file)
 
     companion object {

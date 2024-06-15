@@ -38,23 +38,29 @@ class DetailActivity : AppCompatActivity() {
         }
 
         if (plantData != null) {
-            viewModel.getTodoList(plantData.id, todoDate = getDayDifference(plantData))
-        }
-
-        viewModel.toDo.observe(this) {
-            val data = it[getDayDifference(plantData)]
-            setUpRecyclerView(it)
-            binding.apply {
-                plantName.text = plantData?.plantType
-                plantStatus.text = plantData?.growthStatus
-                dayTitle.text = data.toDoDay.toString()
-                backButton.setOnClickListener {
-                    finish()
+            val plantId = plantData.id
+            val todoDate = getDayDifference(plantData)
+            viewModel.checkTodo(plantId).observe(this){todoExist ->
+                if(!todoExist){
+                    viewModel.getTodoList(plantId)
+                }
+                viewModel.getTodoFromDatabase(plantId, todoDate).observe(this){ listOfPlantTodo ->
+                    if(listOfPlantTodo.isNotEmpty()){
+                        val data = listOfPlantTodo[getDayDifference(plantData)]
+                        setUpRecyclerView(listOfPlantTodo)
+                        binding.apply {
+                            plantName.text = plantData.plantType
+                            plantStatus.text = plantData.growthStatus
+                            dayTitle.text = data.toDoDay.toString()
+                            backButton.setOnClickListener {
+                                finish()
+                            }
+                        }
+                    }
                 }
             }
 
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -73,10 +79,10 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateTodo(isCompleted: Boolean, todoId: Int) {
+    private fun updateTodo(isCompleted: Boolean, plantTodo: PlantTodo) {
         viewModel.updateTodoList(
             isCompleted,
-            todoId
+            plantTodo
         )
     }
 

@@ -17,13 +17,10 @@ interface ApiService {
     @Multipart
     @POST("predict/")
     fun postData(
-        @Header("Authorization") token: String = "Bearer ${BuildConfig.REMOTE_API_KEY}",
         @Part file : MultipartBody.Part
     ) : Call<IdentificationResponse>
 
 
     @GET("tracking/")
-    fun getTrackingData(
-        @Header("Authorization") token: String = "Bearer ${BuildConfig.REMOTE_API_KEY}"
-    ) : Call<TrackingDataResponse>
+    fun getTrackingData() : Call<TrackingDataResponse>
 }

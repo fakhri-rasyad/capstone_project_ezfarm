@@ -15,17 +15,17 @@ class ApiConfig {
         fun getInstance() : ApiService {
             val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
-            //Penambahan token
-//            val authInterceptor = Interceptor { chain ->
-//                val req = chain.request()
-//                val requestHeaders = req.newBuilder()
-//                    .addHeader("Authorization", "Bearer ${BuildConfig.REMOTE_API_KEY}")
-//                    .build()
-//
-//                Log.e("HEADER", "${requestHeaders.method} \nHEADERS: ${requestHeaders.headers}")
-//
-//                chain.proceed(requestHeaders)
-//            }
+
+            val authInterceptor = Interceptor { chain ->
+                val req = chain.request()
+                val requestHeaders = req.newBuilder()
+                    .addHeader("Authorization", "Bearer ${BuildConfig.REMOTE_API_KEY}")
+                    .build()
+
+                Log.e("HEADER", "${requestHeaders.method} \nHEADERS: ${requestHeaders.headers}")
+
+                chain.proceed(requestHeaders)
+            }
 
             val client = OkHttpClient
                 .Builder()
@@ -33,7 +33,7 @@ class ApiConfig {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(loggingInterceptor)
-//                .addNetworkInterceptor(authInterceptor)
+                .addNetworkInterceptor(authInterceptor)
                 .build()
 
             val retrofit = Retrofit

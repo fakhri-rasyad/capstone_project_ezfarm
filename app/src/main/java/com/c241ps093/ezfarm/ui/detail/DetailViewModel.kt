@@ -8,49 +8,50 @@ import com.c241ps093.ezfarm.data.database.PlantTodo
 import com.c241ps093.ezfarm.data.entity.TrackingDataResponse
 import com.c241ps093.ezfarm.data.repository.EzFarmRepository
 import com.c241ps093.ezfarm.getErrorResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class DetailViewModel(private val ezFarmRepository: EzFarmRepository) : ViewModel() {
-    private val _toDo = MutableLiveData<List<PlantTodo>>()
-    val toDo : LiveData<List<PlantTodo>> = _toDo
-    fun getTodoList(plantId: Int, todoDate : Int){
-        if(ezFarmRepository.checkTodo(plantId)){
-            _toDo.postValue(ezFarmRepository.getTodoFromDatabase(plantId = plantId, todoDate = todoDate))
-        } else {
-            val client = ezFarmRepository.getTodoFromAPI()
+    fun getTodoFromDatabase(plantId: Int, todoDate: Int) : LiveData<List<PlantTodo>> = ezFarmRepository.getTodoFromDatabase(plantId, todoDate)
 
-            client.enqueue(object : Callback<TrackingDataResponse> {
-                override fun onResponse(
-                    p0: Call<TrackingDataResponse>,
-                    p1: Response<TrackingDataResponse>
-                ) {
-                    val responseBody = p1.body()
-                    if(p1.isSuccessful && responseBody !== null){
-                        responseBody.data?.day?.map { dayItem->
-                            dayItem?.langkah?.map {
-                                val newPlantTodo = PlantTodo(
-                                    plantId = plantId,
-                                    toDoDay = todoDate,
-                                    desc = it?.desc!!,
-                                    status = it.status!!
-                                )
-                                ezFarmRepository.insertTodo(newPlantTodo)
-                            }
+    fun checkTodo(plantId: Int) : LiveData<Boolean> = ezFarmRepository.checkTodo(plantId)
+    fun getTodoList(plantId: Int){
+        val client = ezFarmRepository.getTodoFromAPI()
+        client.enqueue(object : Callback<TrackingDataResponse> {
+            override fun onResponse(
+                p0: Call<TrackingDataResponse>,
+                p1: Response<TrackingDataResponse>
+            ) {
+                val responseBody = p1.body()
+                if(p1.isSuccessful && responseBody !== null){
+                    responseBody.data?.day?.map { dayItem->
+                        dayItem?.langkah?.map {
+                            val newPlantTodo = PlantTodo(
+                                plantId = plantId,
+                                toDoDay = dayItem.id!!,
+                                desc = it?.desc!!,
+                                status = it.status!!
+                            )
+                            ezFarmRepository.insertTodo(newPlantTodo)
                         }
-                        getTodoList(plantId, todoDate)
                     }
                 }
-
-                override fun onFailure(p0: Call<TrackingDataResponse>, p1: Throwable) {
-                    Log.e("DetailViewModel", p1.message ?: "Error")
-                }
-            })
-        }
+            }
+            override fun onFailure(p0: Call<TrackingDataResponse>, p1: Throwable) {
+                Log.e("DetailViewModel", p1.message ?: "Error")
+            }
+        })
     }
-    fun updateTodoList(isCompleted: Boolean, todoId : Int) {
-        ezFarmRepository.updateTodo(todoId, isCompleted)
+    fun updateTodoList(isCompleted: Boolean, plantTodo: PlantTodo) {
+        CoroutineScope(Dispatchers.IO).launch{
+            plantTodo.status = isCompleted
+            ezFarmRepository.insertTodo(plantTodo)
+        }
     }
 
 }

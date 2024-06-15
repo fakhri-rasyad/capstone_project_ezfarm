@@ -22,11 +22,11 @@ interface EzFarmDao {
     fun insertTodo(todo: PlantTodo)
 
     @Query("SELECT * FROM planttodo WHERE plantId LIKE :plantId AND todoDay LIKE :todoDate")
-    fun getTodo(plantId : Int, todoDate: Int) : List<PlantTodo>
+    fun getTodo(plantId : Int, todoDate: Int) : LiveData<List<PlantTodo>>
 
     @Query("UPDATE planttodo SET status=:newStatus WHERE todoId = :todoId")
     fun updateTodo(newStatus: Boolean, todoId: Int)
 
     @Query("SELECT EXISTS(SELECT * FROM planttodo WHERE plantId LIKE :plantId)")
-    fun checkIfPlantTodoExist(plantId : Int) : Boolean
+    fun checkIfPlantTodoExist(plantId : Int) : LiveData<Boolean>
 }

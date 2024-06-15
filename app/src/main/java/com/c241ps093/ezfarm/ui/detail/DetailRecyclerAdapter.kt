@@ -8,7 +8,7 @@ import com.c241ps093.ezfarm.databinding.DetailRecyclerItemBinding
 
 class DetailRecyclerAdapter(
     private val array: List<PlantTodo?>?,
-    private val onSwitchChange: (isCompleted: Boolean, position: Int) -> Unit
+    private val onSwitchChange: (isCompleted: Boolean, plantTodo: PlantTodo) -> Unit
 ) : RecyclerView.Adapter<DetailRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(binding: DetailRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -32,7 +32,7 @@ class DetailRecyclerAdapter(
                 todoDesc.text = todoData.desc
                 switchComponent.isChecked = todoData.status
                 switchComponent.setOnCheckedChangeListener { _, isChecked ->
-                    onSwitchChange(isChecked, position)
+                    onSwitchChange(isChecked, todoData)
                 }
             }
         }
