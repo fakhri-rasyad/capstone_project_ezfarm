@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ezfarm</string>
+    <string name="app_name">EZFarm</string>
     <string name="nav_home">Home</string>
     <string name="nav_camera">Camera</string>
     <string name="add_fab">Add_Fab</string>
