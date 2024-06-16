@@ -9,13 +9,17 @@ import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.HomeRecyclerItemBinding
 import com.c241ps093.ezfarm.ui.detail.DetailActivity
 
-class HomeRecyclerViewAdapter(private val plantList: List<Plant>) :
+class HomeRecyclerViewAdapter(
+    private val plantList: List<Plant>,
+    private val deletePlant : (Plant) -> Unit
+) :
     RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(binding: HomeRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val plantName = binding.checkedChip
         val plantedDate = binding.plantedDateTv
         val harvestDate = binding.harvestDateTv
         val growthStatus = binding.plantGrowthStatus
+        val deleteButton = binding.deleteButton
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,6 +42,9 @@ class HomeRecyclerViewAdapter(private val plantList: List<Plant>) :
             harvestDate.text =
                 holder.itemView.context.getString(R.string.harvest_date, harvestedDate)
             growthStatus.text = plantData.growthStatus
+            deleteButton.setOnClickListener {
+                deletePlant(plantData)
+            }
         }
 
         holder.itemView.setOnClickListener {

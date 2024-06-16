@@ -7,9 +7,11 @@ import com.c241ps093.ezfarm.data.repository.EzFarmRepository
 
 class HomeViewModel(private val ezFarmRepository: EzFarmRepository) : ViewModel() {
     fun getPlant(): LiveData<List<Plant>> = ezFarmRepository.getPlant()
-
-
     fun addData(plant: Plant) {
         ezFarmRepository.insertPlant(plant)
+    }
+    fun deleteData(plant: Plant){
+        ezFarmRepository.deletePlant(plant)
+        ezFarmRepository.deleteTodo(plantId = plant.id)
     }
 }

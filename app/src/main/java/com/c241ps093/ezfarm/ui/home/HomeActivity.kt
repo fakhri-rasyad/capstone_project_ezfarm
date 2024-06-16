@@ -5,8 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.c241ps093.ezfarm.R
 import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.ActivityMainBinding
+import com.c241ps093.ezfarm.makeToast
 import com.c241ps093.ezfarm.ui.add.AddFragment
 import com.c241ps093.ezfarm.ui.camera.CameraActivity
 import com.c241ps093.ezfarm.viewmodel.factory.ViewModelFactory
@@ -47,9 +49,14 @@ class HomeActivity : AppCompatActivity() {
         plantList: List<Plant>
     ) {
         binding.apply {
-            val adapter = HomeRecyclerViewAdapter(plantList)
+            val adapter = HomeRecyclerViewAdapter(plantList, ::deletePlant)
             this.homeRv.adapter = adapter
         }
+    }
+
+    private fun deletePlant(plant: Plant){
+        viewModel.deleteData(plant)
+        makeToast(this, getString(R.string.plant_deleted_notification))
     }
 
     internal var addPlant: AddFragment.AddPlant = object : AddFragment.AddPlant {

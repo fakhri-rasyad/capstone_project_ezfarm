@@ -32,12 +32,17 @@ class EzFarmRepository(
         return userPreferences.checkIfHasUsedApp().first()
     }
     //Database
-
     fun insertPlant(plant: Plant) {
         executorService.execute { plantDatabase.ezFarmDao().insertPlant(plant) }
     }
     fun getPlant(): LiveData<List<Plant>> {
         return plantDatabase.ezFarmDao().getPlant()
+    }
+
+    fun deletePlant(plant: Plant){
+        executorService.execute {
+            plantDatabase.ezFarmDao().deletePlant(plant)
+        }
     }
     fun checkTodo(plantId: Int) : LiveData<Boolean> =  plantDatabase.ezFarmDao().checkIfPlantTodoExist(plantId)
     fun getTodoFromAPI() = apiService.getTrackingData()
@@ -45,8 +50,9 @@ class EzFarmRepository(
     fun insertTodo(todo: PlantTodo){
         executorService.execute { plantDatabase.ezFarmDao().insertTodo(todo) }
     }
-    fun updateTodo(todoId : Int, plantStatus: Boolean) = plantDatabase.ezFarmDao().updateTodo(plantStatus, todoId)
-
+    fun deleteTodo(plantId: Int) {
+        executorService.execute { plantDatabase.ezFarmDao().deleteTodo(plantId) }
+    }
     //Network
     fun uploadImage(file : MultipartBody.Part) = apiService.postData(file = file)
 

@@ -2,6 +2,7 @@ package com.c241ps093.ezfarm.ui.add
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.icu.util.LocaleData
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -56,9 +57,10 @@ class AddFragment : BottomSheetDialogFragment() {
             cancelButton.setOnClickListener {
                 dismiss()
             }
-            calendarPick.setOnClickListener {
-                showDatePicker()
-            }
+//            calendarPick.setOnClickListener {
+//                showDatePicker()
+//            }
+            setupPlantDate()
             spinner.adapter = ArrayAdapter(
                 requireContext(),
                 androidx.constraintlayout.widget.R.layout.support_simple_spinner_dropdown_item,
@@ -129,7 +131,18 @@ class AddFragment : BottomSheetDialogFragment() {
             LocalDateTime.now().monthValue,
             LocalDateTime.now().dayOfMonth,
         )
+        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
         datePickerDialog.show()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun setupPlantDate(){
+        val today = LocalDateTime.now()
+        val selectedDate = LocalDate.of(today.year, today.month, today.dayOfMonth)
+        val formatter = DateTimeFormatter.ofPattern(dateFormat)
+        plantPlantedDate = selectedDate.format(formatter)
+        binding.calendarPick.text = plantPlantedDate
+        plantHarvestDate = selectedDate.plusDays(90).format(formatter)
     }
 
     interface AddPlant {

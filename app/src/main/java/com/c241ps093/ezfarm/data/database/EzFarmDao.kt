@@ -27,6 +27,9 @@ interface EzFarmDao {
     @Query("UPDATE planttodo SET status=:newStatus WHERE todoId = :todoId")
     fun updateTodo(newStatus: Boolean, todoId: Int)
 
+    @Query("DELETE FROM planttodo WHERE plantId LIKE :plantId")
+    fun deleteTodo(plantId: Int)
+
     @Query("SELECT EXISTS(SELECT * FROM planttodo WHERE plantId LIKE :plantId)")
     fun checkIfPlantTodoExist(plantId : Int) : LiveData<Boolean>
 }
