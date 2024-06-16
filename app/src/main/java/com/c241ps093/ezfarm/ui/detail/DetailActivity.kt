@@ -48,9 +48,10 @@ class DetailActivity : AppCompatActivity() {
                     viewModel.getTodoList(plantId)
                 }
                 viewModel.getTodoFromDatabase(plantId, todoDate).observe(this){ listOfPlantTodo ->
-                    binding.progressBar.visibility = View.INVISIBLE
+
                     Log.e("DETAIL", listOfPlantTodo.toString())
                     if(listOfPlantTodo.isNotEmpty()){
+                        binding.progressBar.visibility = View.INVISIBLE
                         setUpRecyclerView(listOfPlantTodo)
                         binding.apply {
                             plantName.text = plantData.plantType
