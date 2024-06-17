@@ -9,11 +9,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import java.util.Calendar
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TimePickerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
     private var mListener: DialogTimeListener? = null

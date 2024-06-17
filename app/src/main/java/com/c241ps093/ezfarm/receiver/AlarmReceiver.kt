@@ -29,12 +29,12 @@ class AlarmReceiver : BroadcastReceiver() {
         }
     }
 
-    fun setOneTimeAlarm(context: Context, type: String, time: String, message: String) {
+    fun setOneTimeAlarm(context: Context, title: String, time: String, message: String) {
         if (isDateInvalid(time, TIME_FORMAT)) return
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra(EXTRA_MESSAGE, message)
-        intent.putExtra(EXTRA_TITLE, type)
+        intent.putExtra(EXTRA_TITLE, title)
 
         val timeArray = time.split(":").toTypedArray()
         val calendar = Calendar.getInstance()

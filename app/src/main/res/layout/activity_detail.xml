@@ -49,6 +49,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/back_button" />
 
+    <Button
+        android:id="@+id/set_notification_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/set_notification"
+        app:icon="@drawable/notification_add_24"
+        app:iconGravity="textStart"
+        app:layout_constraintTop_toBottomOf="@id/shapeableImageView"
+        />
+
     <TextView
         android:id="@+id/day_title"
         android:layout_width="match_parent"
@@ -59,7 +71,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shapeableImageView" />
+        app:layout_constraintTop_toBottomOf="@id/set_notification_button" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_storylist"
