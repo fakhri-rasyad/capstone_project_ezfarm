@@ -3,68 +3,83 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="12dp"
     android:layout_marginVertical="8dp"
-    >
+    app:cardCornerRadius="12dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="8dp"
-        android:paddingVertical="12dp"
-        >
+        android:paddingVertical="12dp">
+
         <ImageView
             android:id="@+id/list_thumbnail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/list_item_image"
             android:contentDescription="@string/list_thumbnail"
-            />
+            android:src="@drawable/list_item_image" />
+
         <RelativeLayout
-            android:layout_toEndOf="@id/list_thumbnail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
-            >
-            <com.google.android.material.chip.Chip
-                android:id="@+id/checked_chip"
-                android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/list_thumbnail">
+
+            <RelativeLayout
+                android:id="@+id/bar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:chipIcon="@drawable/baseline_check_circle_24"
-                app:chipCornerRadius="20dp"
-                app:chipBackgroundColor="#4D106A52"
-                android:text="@string/plant_name"
-                />
+                >
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checked_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/plant_name"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    app:chipBackgroundColor="#4D106A52"
+                    app:chipCornerRadius="20dp"
+                    app:chipIcon="@drawable/baseline_check_circle_24" />
+                <ImageView
+                    android:id="@+id/delete_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/checked_chip"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/round_delete_forever_24"
+                    />
+            </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/plant_dates"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/checked_chip"
+                android:layout_below="@id/bar"
                 android:layout_marginVertical="4dp"
-                >
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/planted_date_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/planted_date"
-                    />
+                    android:text="@string/planted_date" />
+
                 <TextView
                     android:id="@+id/harvest_date_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/harvest_date"
                     android:layout_below="@id/planted_date_tv"
-                    />
+                    android:text="@string/harvest_date" />
             </RelativeLayout>
+
             <TextView
                 android:id="@+id/plant_growth_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/plant_growth_seeding"
                 android:layout_below="@id/plant_dates"
-                android:textColor="@color/dartmouth_green"
-                />
+                android:text="@string/plant_growth_seeding"
+                android:textColor="@color/dartmouth_green" />
         </RelativeLayout>
     </RelativeLayout>
 

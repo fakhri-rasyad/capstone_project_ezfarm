@@ -3,24 +3,28 @@ package com.c241ps093.ezfarm.ui.home
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.c241ps093.ezfarm.R
+import com.c241ps093.ezfarm.data.database.Plant
 import com.c241ps093.ezfarm.databinding.ActivityMainBinding
+import com.c241ps093.ezfarm.makeToast
 import com.c241ps093.ezfarm.ui.add.AddFragment
 import com.c241ps093.ezfarm.ui.camera.CameraActivity
+import com.c241ps093.ezfarm.viewmodel.factory.ViewModelFactory
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: HomeViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.apply {
-
-        }
-
         val linearLayoutManager = LinearLayoutManager(this)
+
+        viewModel = getViewModel(this)
 
         binding.apply {
             homeRv.apply {
@@ -31,36 +35,40 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             addFab.setOnClickListener {
-                val fragmentManager = supportFragmentManager
-                fragmentManager
-                    .beginTransaction()
-                    .add(R.id.main, AddFragment())
-                    .addToBackStack(null)
-                    .commit()
-
+                val addBottomSheetDialog: BottomSheetDialogFragment = AddFragment()
+                addBottomSheetDialog.show(supportFragmentManager, "BSD Add Fragment")
             }
         }
 
-        val arrayList = arrayListOf<DummyData>()
-        for(i in 1..10){
-            arrayList.add(
-                DummyData(
-                    "Padi",
-                    "20 Mei 2024",
-                    "20 Aprils 2020",
-                    "Seeding"
-                )
-            )
+        viewModel.getPlant().observe(this) {
+            setUpRecyclerView(it)
         }
-
-        setUpRecyclerView(arrayList)
     }
+
     private fun setUpRecyclerView(
-        plantList : List<DummyData>
-    ){
+        plantList: List<Plant>
+    ) {
         binding.apply {
-            val adapter = HomeRecyclerViewAdapter(plantList)
+            val adapter = HomeRecyclerViewAdapter(plantList, ::deletePlant)
             this.homeRv.adapter = adapter
         }
     }
+
+    private fun deletePlant(plant: Plant){
+        viewModel.deleteData(plant)
+        makeToast(this, getString(R.string.plant_deleted_notification))
+    }
+
+    internal var addPlant: AddFragment.AddPlant = object : AddFragment.AddPlant {
+        override fun addPlant(newPlant: Plant) {
+            viewModel.addData(newPlant)
+        }
+    }
+
+    private fun getViewModel(appCompatActivity: AppCompatActivity): HomeViewModel {
+        val viewModelFactory =
+            ViewModelFactory.getInstance(application = appCompatActivity.application)
+        return ViewModelProvider(appCompatActivity, viewModelFactory)[HomeViewModel::class.java]
+    }
+
 }

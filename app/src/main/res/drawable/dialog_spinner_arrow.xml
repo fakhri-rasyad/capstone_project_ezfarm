@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:drawable="@drawable/camera_button_bar_background"
-        />
-    <item
-        android:gravity="right"
-        >
-        <vector android:height="24dp" android:tint="#106A52" android:viewportHeight="24" android:viewportWidth="24" android:width="24dp">
+    <item android:drawable="@drawable/camera_button_bar_background" />
+    <item android:gravity="right">
+        <vector
+            android:width="24dp"
+            android:height="24dp"
+            android:tint="#106A52"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
 
-            <path android:fillColor="@android:color/white" android:pathData="M7,10l5,5 5,-5z"/>
+            <path
+                android:fillColor="@android:color/white"
+                android:pathData="M7,10l5,5 5,-5z" />
 
         </vector>
     </item>
