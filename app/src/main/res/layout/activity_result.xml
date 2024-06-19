@@ -24,7 +24,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/plant_name"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/back_button"
@@ -35,7 +34,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/plant_status"
         android:textColor="@color/dartmouth_green"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/back_button"
@@ -52,30 +50,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/back_button" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_btn"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="20dp"
-        android:background="@drawable/bg_button_primary"
-        android:drawableStart="@drawable/add_ic"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:text="@string/add_plant_to_collection"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shapeableImageView" />
-
     <ScrollView
         android:id="@+id/sv_data"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_btn"
+        app:layout_constraintTop_toBottomOf="@id/shapeableImageView"
         app:layout_constraintBottom_toBottomOf="parent"
         >
 
@@ -83,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingVertical="16dp">
+            android:paddingVertical="8dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/deskripsi"
@@ -248,5 +231,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_btn" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
