@@ -1,23 +1,44 @@
+# EZFarm - Bangkit Capstone Product Track 2024 ✨
+![Desktop-1](https://github.com/fakhri-rasyad/capstone_project_ezfarm/assets/92986198/d12d3dfe-f2ac-4baf-b271-ee7a9e549c67)
+
+## [⬇️Download App Here (.apk file)](https://drive.google.com/uc?export=download&id=12vIYYPRpQ1UNQtigWa3XzQKEMZUDb35J)📲
+
+# EZFarm 🌾📱
 <p align="center">
   <img src="https://github.com/Kadekastriyani/example/assets/143046587/28e5e0fc-c0ed-4370-b42b-0f8955ce5748" alt="Konva logo" height="180" />
 </p>
 
-
-
-<h1 align="center">EZFarm</h1>
-
 EZFarm is a mobile-based cultivation application to provide comprehensive information and tools for successful plant cultivation. Our app offers tailored methodologies for specific crops to enhance production and features real-time disease detection to provide detailed information on identified diseases.
 
-# Tech Stacks
-MD: Kotlin
+# Tech Stacks 🔧
+- **Mobile Development** :
+    * Kotlin
+    * Android XML
+    * Retrofit
+    * MLKit for Firebase:
+    * CameraX
 
-Backend: Python, Fast API
+- **Cloud & Backend** :
+    * FastAPI
+    * Cloud Run (GCP)
+    * FireStore (GCP)
+    * Cloud Storage (GCP)
+    * Postman
 
-ML: Python, Tensorflow
+- **Machine Learning** :
+    * TensorFlow
+    * OpenCV
+    * Matplotlib
+    * Keras
+    * Scikit-Learn
+    * Pillow (PIL)
 
-Deployment: Cloud Storage, Firestore, Cloud Run, Cloud Build
-
-Tools : Git, Visual Studio Code, Figma, Google Docs, Google Drive
+- **Tools** :
+    * Git
+    * Visual Studio Code
+    * Figma
+    * Google Docs
+    * Google Drive
 
 ## Repositories
 
@@ -52,20 +73,46 @@ Here is the link dataset.
 - You can download the dataset [Dataset](https://www.kaggle.com/datasets/dedeikhsandwisaputra/rice-leafs-disease-dataset/data).
 
 # Deployed
-### API
+### API Reference
 Here is the API link [API](https://deploy-api-ezfarm-cmmpgnmheq-et.a.run.app/).
-Use Endpoint tracking for daily tracking and predict for disease prediction.
+
+#### Get tracking items
+
+```http
+  GET /tracking
+```
+
+| Header          | Type     | Description         |
+|:----------------| :------- |:--------------------|
+| `Authorization` | `string` | **Required**. token |
+
+#### Get predict result
+
+```http
+  POST /predict
+```
+
+| Header          | Type     | Description         |
+|:----------------| :------- |:--------------------|
+| `Authorization` | `string` | **Required**. token |
+
+| Parameter | Type   | Description              |
+|:----------|:-------|:-------------------------|
+| `file`    | `file` | **Required**. file image |
+
+
 ### Models
 Here is the Data Models link [DataModel](https://storage.cloud.google.com/ezfarm-buket/best_model3.h5)
 
 
-## EZFARM (C241-PS093)
-- Aditya Rizki Ramadhan	A322D4KY4392
-- Fakhri Rasyad	A208D4KY4072
-- Anindya Fitri Syahra M322D4KX3087
-- Muhammad Hanif Al Faithoni M002D4KY2849
-- T. Malik Kamal M322D4KY1868
-- Kadek Astri Yani C208D4KX1277
-- Siti Nurhaliza C208D4KX0075
+# Team EZFarm (C241-PS093) 🤝 :
+|          Nama         | Bangkit-ID |       Path       |
+|:---------------------:|:----------:|:----------------:|
+|  Anindya Fitri Syahra  |  M322D4KX3087  | Machine Learning |
+|  T. Malik Kamal  |  M322D4KY1868  | Machine Learning |
+|   Kadek Astri Yani    |  C208D4KX1277  |  Cloud Computing |
+|  Siti Nurhaliza  |  C208D4KX0075  |  Cloud Computing |
+|    Aditya Rizki Ramadhan      |  A322D4KY4392  |      Mobile Development     |
+|    Fakhri Rasyad      |  A208D4KY4072  |      Mobile Development     |
 
 Crop tracking app with the purpose of helping farmers increase crop production. Part of Bangkit 2024 Batch 1 capstone project
