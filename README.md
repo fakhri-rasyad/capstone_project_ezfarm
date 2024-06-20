@@ -46,7 +46,7 @@ EZFarm is a mobile-based cultivation application to provide comprehensive inform
 | :----------------: | :--------------------------------------------------------------------------------------: |
 | Mobile Development | [MD Branch](https://github.com/fakhri-rasyad/capstone_project_ezfarm) |
 |  Cloud Computing   | [CC Branch](https://github.com/malikkamal12/deploy-API-EZFarm)      |
-|  Machine Learning  | [ML Branch]()       |
+|  Machine Learning  | [ML Branch](https://github.com/malikkamal12/RiceDisease)       |
 
 
 
